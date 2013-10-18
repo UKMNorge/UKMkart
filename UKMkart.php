@@ -27,7 +27,22 @@ function UKMkart_script() {
 }
 
 function UKMKart() {
-	echo 'Velg kart';	
+	if(!isset($_GET['action']))
+		$_GET['action'] = 'info';
+
+	switch($_GET['action']) {
+		case 'info': 
+			echo TWIG('layout.twig.html', array(), dirname(__FILE__) );
+			break;
+		case 'urg':
+			require_once('controller_urg.inc.php');
+			echo TWIG('urg.twig.html', $infos, dirname( __FILE__ ));
+			break;
+		case 'urg':
+			require_once('controller_fylkeskontakter.inc.php');
+			echo TWIG('fylkeskontakter.twig.html', $infos, dirname( __FILE__ ));
+			break;
+	}
 }
 /*
 
