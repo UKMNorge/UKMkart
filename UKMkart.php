@@ -25,7 +25,7 @@ function UKMkart_script() {
 	wp_enqueue_script('bootstrap_js');
 	wp_enqueue_style('bootstrap_css');
 
-	wp_enqueue_style('UKMkart_css', wp_plugin_dir_url( __FILE__ ).'ukmkart.css');
+	wp_enqueue_style('UKMkart_css', plugin_dir_url( __FILE__ ).'ukmkart.css');
 }
 
 function UKMKart() {
