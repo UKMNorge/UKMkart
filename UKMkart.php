@@ -16,7 +16,7 @@ if(is_admin()) {
 }
 
 function UKMkart_menu() {
-	$page = add_menu_page('Kart', 'Kart', 'editor', 'UKMKart', 'UKMKart', 'http://ico.ukm.no/hus-menu.png',499);
+	$page = add_menu_page('Kart', 'Kart', 'editor', 'UKMkart', 'UKMkart', 'http://ico.ukm.no/hus-menu.png',499);
 	add_action( 'admin_print_styles-' . $page, 'UKMkart_script' );
 }
 
@@ -28,7 +28,7 @@ function UKMkart_script() {
 	wp_enqueue_style('UKMkart_css', plugin_dir_url( __FILE__ ).'ukmkart.css');
 }
 
-function UKMKart() {
+function UKMkart() {
 	if(!isset($_GET['action']))
 		$_GET['action'] = 'info';
 
