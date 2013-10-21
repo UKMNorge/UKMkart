@@ -16,7 +16,7 @@
 
 @$imconf->font = $imconf->folder->resources .'verdana.ttf';
 
-@$imconf->resource->map = $imconf->folder->map.'kart.png';
+@$imconf->resource->map = $imconf->folder->resources . 'norgeskart.png';
 
 
 ///////////////////////////////

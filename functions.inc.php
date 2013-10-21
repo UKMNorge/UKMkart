@@ -175,7 +175,7 @@ function map_contact($kontakt) {
 	l('Mapping '. $kontakt->fylke->navn .' @ '. $coords->fylke->x .'x'. $coords->fylke->y);
 	$file_contact = $kontakt->map_image;
 	
-	l('Mapping image at: '. $file_contact);
+	l('Loading image at: '. $file_contact);
 	$image_contact = imagecreatefrompng($file_contact);
 	$width_contact = imagesx($image_contact);
 	$height_contact= imagesy($image_contact);
