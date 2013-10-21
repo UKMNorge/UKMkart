@@ -16,7 +16,7 @@
 @$imconf->folder->maps 		= $imconf->folder->base .'map/';
 
 @$imconf->url->base 		= plugin_dir_url( __FILE__ ); 
-@$imconf->url->maps 		= str_replace($imconf->folder->base, $imconf->url->base, $imconf->folder->map);
+@$imconf->url->maps 		= str_replace($imconf->folder->base, $imconf->url->base, $imconf->folder->maps);
 @$imconf->url->temp			= str_replace($imconf->folder->base, $imconf->url->base, $imconf->folder->temp);
 @$imconf->url->circle 		= str_replace($imconf->folder->temp, $imconf->url->temp, $imconf->folder->circle);
 
