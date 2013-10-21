@@ -6,9 +6,11 @@
 @$imconf->size->map->w = 0;
 @$imconf->size->map->h = 0;
 
-@$imconf->folder->base = '/home/ukmno/public_html/map/';
-@$imconf->folder->circle = $imconf->folder->base . 'circle/';
-@$imconf->folder->resources = '/home/ukmno/public_html/map/';
+@$imconf->folder->base 		= '/home/ukmno/public_html/wp-content/plugins/UKMKart/';
+@$imconf->folder->temp		= $imconf->folder->base .'temp/';
+@$imconf->folder->original 	= $imconf->folder->temp . 'original/';
+@$imconf->folder->circle 	= $imconf->folder->temp . 'circle/';
+@$imconf->folder->resources = $imconf->folder->base .'resources/';
 
 @$imconf->font = $imconf->folder->resources .'verdana.ttf';
 

@@ -29,6 +29,9 @@ function UKMkart_script() {
 }
 
 function UKMkart() {
+	require_once('config.php');
+	require_once('functions.inc.php');
+
 	if(!isset($_GET['action']))
 		$_GET['action'] = 'info';
 
