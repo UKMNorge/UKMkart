@@ -229,25 +229,25 @@ function map_coordinates($fylke) {
 	l('Find coordinates for '. $fylke);
 	
 	$coords = new StdClass;
-	$coords->finnmark 		= (object) array('x' => 590, 'y' => 132);
-	$coords->troms 			= (object) array('x' => 590, 'y' => 200);
-	$coords->nordland 		= (object) array('x' => 590, 'y' => 250);
-	$coords->nordtrondelag 	= (object) array('x' => 590, 'y' => 300);
-	$coords->sortrondelag	= (object) array('x' => 590, 'y' => 350);
-	$coords->moreogromsdal 	= (object) array('x' => 590, 'y' => 400);
-	$coords->sognogfjordane = (object) array('x' => 590, 'y' => 450);
-	$coords->hordaland 		= (object) array('x' => 590, 'y' => 500);
-	$coords->rogaland 		= (object) array('x' => 590, 'y' => 550);
-	$coords->vestagder 		= (object) array('x' => 590, 'y' => 600);
-	$coords->austagder		= (object) array('x' => 590, 'y' => 650);
-	$coords->telemark 		= (object) array('x' => 390, 'y' => 200);
-	$coords->vestfold 		= (object) array('x' => 390, 'y' => 250);
-	$coords->buskerud 		= (object) array('x' => 390, 'y' => 300);
-	$coords->oslo 			= (object) array('x' => 390, 'y' => 350);
-	$coords->ostfold		= (object) array('x' => 390, 'y' => 400);
-	$coords->akershus		= (object) array('x' => 390, 'y' => 450);
-	$coords->hedmark 		= (object) array('x' => 390, 'y' => 500);
-	$coords->oppland 		= (object) array('x' => 390, 'y' => 550);
+	$coords->finnmark 		= (object) array('x' => 2350,	'y' => 630);
+	$coords->troms 			= (object) array('x' => 2050,	'y' => 740);
+	$coords->nordland 		= (object) array('x' => 1785,	'y' => 940);
+	$coords->nordtrondelag 	= (object) array('x' => 1590,	'y' => 1280);
+	$coords->sortrondelag	= (object) array('x' => 795,	'y' => 1070);
+	$coords->moreogromsdal 	= (object) array('x' => 460,	'y' => 1250);
+	$coords->sognogfjordane = (object) array('x' => 270,	'y' => 1590);
+	$coords->hordaland 		= (object) array('x' => 270,	'y' => 1935);
+	$coords->rogaland 		= (object) array('x' => 270,	'y' => 2275);
+	$coords->vestagder 		= (object) array('x' => 470,	'y' => 2560);
+	$coords->austagder		= (object) array('x' => 730,	'y' => 2560);
+	$coords->telemark 		= (object) array('x' => 990,	'y' => 2560);
+	$coords->vestfold 		= (object) array('x' => 1250,	'y' => 2560);
+	$coords->buskerud 		= (object) array('x' => 1510,	'y' => 2560);
+	$coords->oslo 			= (object) array('x' => 1780,	'y' => 2560);
+	$coords->ostfold		= (object) array('x' => 2050,	'y' => 2560);
+	$coords->akershus		= (object) array('x' => 1550, 	'y' => 2010);
+	$coords->hedmark 		= (object) array('x' => 1880,	'y' => 1880);
+	$coords->oppland 		= (object) array('x' => 1550,	'y' => 1590);
 
 	if(isset($coords->$fylke))
 		l('Found coordinates!');

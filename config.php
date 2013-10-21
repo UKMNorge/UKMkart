@@ -1,8 +1,8 @@
 <?php
 @$imconf->size->contact->large->w = 400;
 @$imconf->size->contact->large->h = 400;
-@$imconf->size->contact->inmap->w = 65;
-@$imconf->size->contact->inmap->h = 65;
+@$imconf->size->contact->inmap->w = 225;
+@$imconf->size->contact->inmap->h = 225;
 @$imconf->size->map->w = 0;
 @$imconf->size->map->h = 0;
 
