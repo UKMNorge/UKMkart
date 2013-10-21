@@ -61,6 +61,8 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 
 $infos = array('kontakter' => $kontakter, 'log' => $UKMKART_GD_LOG);
 
+var_dump($UKMKART_GD_LOG);
+
 function lg($group) {
 	global $UKMKART_GD_LOG_GROUP;
 	$UKMKART_GD_LOG_GROUP = $group;
