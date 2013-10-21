@@ -46,8 +46,9 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	lg($kontakt->fylke->navn);
 	l('NAME: ' .$kontakt->navn .' (FylkeID: '. $kontakt->fylke->id .')');
 	l('Read image URL: '. $kontakt->bilde);
-	l('Store image as: '. $filewrite);
-
+	l('Filename: '. $filename);
+	l('Store image at: '. $filewrite);
+	
 	$ch = curl_init($kontakt->bilde);
 	$fp = fopen($filewrite , 'wb');
 	curl_setopt($ch, CURLOPT_FILE, $fp);
@@ -56,7 +57,7 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	curl_close($ch);
 	fclose($fp);
 	
-	create_circle( $filename );
+//	create_circle( $filename );
 }
 
 global $UKMkart_GD_LOG;
