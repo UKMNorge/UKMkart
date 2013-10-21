@@ -18,6 +18,8 @@ if(is_admin()) {
 	global $blog_id, $UKMkart_GD_LOG_GROUP, $UKMkart_GD_LOG;
 	if($blog_id == 1)
 		add_action('admin_menu', 'UKMkart_menu',200);
+		
+	add_action('UKMmonstring_save_contact', 'UKMkart_update');
 }
 
 function lg($group) {
@@ -62,6 +64,26 @@ function UKMkart() {
 			echo TWIG('kartgen.twig.html', $infos, dirname( __FILE__ ));
 			break;
 	}
+}
+
+function UKMkart_update($contact_id) {
+	if( is_numeric( $contact_id ) ) {
+		require_once('UKM/kontakt.class.php');
+		
+		$kontakt = new kontakt( $_POST['c_id'] );
+		$locked = $kontakt->g('system_locked');
+		
+		if($locked == 'true') {
+			$email = $kontakt->g('email');
+			// Re-gen URG-kart (UKMkart-module)
+			if(strpos( $email, '@urg.ukm.no') ) {
+				require_once(plugin_dir_path(__FILE__).'controller_urg.inc.php');
+			} elseif ( strpos( $email , '@ukm.no') ) {
+				require_once(plugin_dir_path(__FILE__).'controller_ukm.inc.php');
+			}
+		}
+	}
+
 }
 /*
 
