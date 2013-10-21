@@ -194,8 +194,8 @@ function map_contact($image_map, $kontakt) {
 					   $height_contact   // Source height
 					   );
 					   
-	map_text($image_map, $kontakt->navn, 18, $fontcolor, $coords->name);
-	map_text($image_map, $kontakt->fylke->navn, 15, $fontcolor, $coords->fylke);
+	map_text($image_map, $kontakt->navn, 30, $fontcolor, $coords->name);
+	map_text($image_map, $kontakt->fylke->navn, 25, $fontcolor, $coords->fylke);
 	imagedestroy( $image_contact );
 }
 
@@ -209,15 +209,16 @@ function map_text($image, $text, $fontsize, $fontcolor, $coords) {
 							$text // Text
 							);
 	$text_width = $textbox[2];
+	$text_heigth = $textbox[1];
 	$text_centerpoint = $text_width / 2;	
 
-	l('Text width is '. $text_width);
-	l('Text centerpoint is '. $text_centerpoint .' and should center around horizontally @ '. ($coords->x - $text_centerpoint) .'x'.$coords->y);
+	l('Textbox size is '. $text_width .'x'. $text_heigth);
+	l('Text centerpoint is '. $text_centerpoint .' and should center around @ '. ($coords->x - $text_centerpoint) .'x'. ($coords->y + $text_heigth));
 	imagettftext($image, // Target image
 				 $fontsize, // Font size
 				 0, // Angle
 				 $coords->x - $text_centerpoint, // Destination X
-				 $coords->y, // Destination Y
+				 $coords->y + $text_heigth, // Destination Y
 				 $fontcolor, // Color
 				 $imconf->font, // Font path
 				 $text // TEXT
