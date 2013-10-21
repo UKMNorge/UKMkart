@@ -58,7 +58,7 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	curl_close($ch);
 	fclose($fp);
 	
-//	create_circle( $filename );
+	create_circle( $filename );
 }
 
 global $UKMkart_GD_LOG;
