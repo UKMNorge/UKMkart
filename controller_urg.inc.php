@@ -25,7 +25,7 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	$kontakt->navn = $object->firstname;
 	$kontakt->fylke->id = $r['pl_fylke'];
 	$kontakt->fylke->navn = $r['pl_name'];
-	$kontakt->bilde = $object->image();
+	$kontakt->bilde = $object->get('image');
 	$kontakter[] = $kontakt;
 }
 
