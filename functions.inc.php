@@ -2,7 +2,7 @@
 function create_square($kontakt, $file_original) {
 	global $imconf;
 
-	$file_square   = $imconf->folder->square   . $kontakt->bilde_navn .'.jpg';
+	$file_square   = $imconf->folder->square . $kontakt->bilde_navn .'.png';
 
 	// COPY IMAGE TO TEMP DIR	
 	$ch = curl_init($kontakt->bilde);
@@ -69,7 +69,7 @@ function create_square($kontakt, $file_original) {
 					   );
 					   
 	imagedestroy($image_scale);
-	imagejpeg($image_square, $file_square);
+	imagepng($image_square, $file_square);
 	imagedestroy($image_square);
 	
 	return $file_square;

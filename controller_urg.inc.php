@@ -33,7 +33,7 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	
 	// NEW IMAGE NAME
 	$kontakt->bilde = $object->get('image');
-	$kontakt->bilde_navn = $place->g('url').'.jpg';
+	$kontakt->bilde_navn = $place->g('url');
 	$kontakt->bilde_ext = substr($kontakt->bilde, strrpos( $kontakt->bilde, '.')+1);
 	
 	$kontakter[] = $kontakt;
