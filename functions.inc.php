@@ -168,9 +168,9 @@ function map_contact($image_map, $kontakt) {
 	
 	$coords = map_coordinates($kontakt->fylke->koord_navn, $imconf->size->contact->inmap->w, $imconf->size->contact->inmap->h);
 	$coords->name = (object) array('x' => (int) ($coords->x + ($imconf->size->contact->inmap->w / 2)),
-								   'y' => (int) ($coords->y + $imconf->size->contact->inmap->h + 10));
+								   'y' => (int) ($coords->y + $imconf->size->contact->inmap->h + 3));
 	$coords->fylke = (object) array('x' => (int) $coords->name->x,
-									'y' => (int) $coords->name->y + 11);
+									'y' => (int) $coords->name->y + 3);
 
 	l('Mapping '. $kontakt->fylke->navn .' @ '. $coords->fylke->x .'x'. $coords->fylke->y);
 	$file_contact = $kontakt->map_image;
@@ -194,7 +194,8 @@ function map_contact($image_map, $kontakt) {
 					   $height_contact   // Source height
 					   );
 					   
-	map_text($image_map, $kontakt->navn, 30, $fontcolor, $coords->name);
+	$height = map_text($image_map, $kontakt->navn, 30, $fontcolor, $coords->name);
+	$coords->fylke->y += $height;
 	map_text($image_map, $kontakt->fylke->navn, 25, $fontcolor, $coords->fylke);
 	imagedestroy( $image_contact );
 }
@@ -227,6 +228,7 @@ function map_text($image, $text, $fontsize, $fontcolor, $coords) {
 				 $imconf->font, // Font path
 				 $text // TEXT
 				 );
+	return $text_heigth;
 }
 
 function map_coordinates($fylke, $width, $height) {
