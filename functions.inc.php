@@ -365,5 +365,9 @@ function gen_map($MAPNAME, $mailfilter) {
 	imagepng($image_map, $imconf->folder->maps . $MAPNAME .'.png');
 	imagedestroy($image_map);
 	
-	return  $imconf->folder->maps . $MAPNAME .'.png';
+	$return = new StdClass;
+	$return->url = $imconf->folder->maps . $MAPNAME .'.png';
+	$return->kontakter = $kontakter;
+	
+	return $return;
 }
