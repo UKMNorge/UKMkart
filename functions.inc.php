@@ -194,8 +194,8 @@ function map_contact($image_map, $kontakt) {
 					   $height_contact   // Source height
 					   );
 					   
-	map_text($image_map, $kontakt->navn, 9, $fontcolor, $coords->name);
-	map_text($image_map, $kontakt->fylke->navn, 9, $fontcolor, $coords->fylke);
+	map_text($image_map, $kontakt->navn, 18, $fontcolor, $coords->name);
+	map_text($image_map, $kontakt->fylke->navn, 15, $fontcolor, $coords->fylke);
 	imagedestroy( $image_contact );
 }
 
