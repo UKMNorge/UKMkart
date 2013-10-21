@@ -52,16 +52,19 @@ function UKMkart() {
 
 	switch($_GET['action']) {
 		case 'info': 
+			$infos['active'] = $_GET['action'];
 			echo TWIG('layout.twig.html', array('map_url' => $imconf->url->maps) , dirname(__FILE__) );
 			break;
 		case 'urg':
 			require_once('controller_urg.inc.php');
 			$infos['pagetitle'] = 'URG';
+			$infos['active'] = $_GET['action'];
 			echo TWIG('kartgen.twig.html', $infos, dirname( __FILE__ ));
 			break;
 		case 'ukm':
 			require_once('controller_ukm.inc.php');
 			$infos['pagetitle'] = 'Fylkeskontakt';
+			$infos['active'] = $_GET['action'];
 			echo TWIG('kartgen.twig.html', $infos, dirname( __FILE__ ));
 			break;
 	}
