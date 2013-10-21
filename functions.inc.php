@@ -88,7 +88,7 @@ function scale_and_crop( $filename_in_original_folder ) {
 	imagepng($image_crop, $file_crop);
 	imagedestroy($image_crop);
 	
-	return $file_square;
+	return $file_crop;
 }
 
 //function create_circle($kontakt, $file_input) {
