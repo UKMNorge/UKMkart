@@ -66,7 +66,7 @@ function UKMkart() {
 	}
 }
 
-function UKMkart_update($contact_id) {
+function UKMkart_update($contact_id) {
 	if( is_numeric( $contact_id ) ) {
 		require_once('UKM/kontakt.class.php');
 		
