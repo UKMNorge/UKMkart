@@ -72,7 +72,7 @@ function create_square($kontakt, $file_original) {
 	imagejpeg($image_square, $file_square);
 	imagedestroy($image_square);
 	
-	$kontakt->bilde_kvadrat = $file_square;
+	return $file_square;
 }
 
 function create_circle($kontakt, $file_input) {
