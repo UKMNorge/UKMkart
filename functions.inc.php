@@ -129,14 +129,23 @@ function create_circle( $filename_in_original_folder ) {
 	$mask = imagecreatetruecolor($imconf->size->contact->large->w, $imconf->size->contact->large->h);
 	// Create transparent color
 	$transparent = imagecolorallocate($mask, 255, 0, 0);
+	$bordercolor = imagecolorallocate($mask, 30,74,69);
 	// Mask the mask ?
 	imagecolortransparent($mask, $transparent);
-	
+
 	imagefilledellipse($mask, // Image resource (mask)
 					   $imconf->size->contact->large->w/2, // x-coordinate of the center
 					   $imconf->size->contact->large->h/2, // y-coordinate of the center
 					   $imconf->size->contact->large->w -4, // The ellipse width
 					   $imconf->size->contact->large->h -4, // The ellipse height
+					   $bordercolor // The fill color ( A color identifier created with imagecolorallocate().)
+					   );
+	
+	imagefilledellipse($mask, // Image resource (mask)
+					   ($imconf->size->contact->large->w/2)+2, // x-coordinate of the center
+					   ($imconf->size->contact->large->h/2)+2, // y-coordinate of the center
+					   $imconf->size->contact->large->w -8, // The ellipse width
+					   $imconf->size->contact->large->h -8, // The ellipse height
 					   $transparent // The fill color ( A color identifier created with imagecolorallocate().)
 					   );
 					   
