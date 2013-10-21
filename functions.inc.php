@@ -194,13 +194,13 @@ function map_contact($image_map, $kontakt) {
 					   $height_contact   // Source height
 					   );
 					   
-	$height = map_text($image_map, $kontakt->navn, 30, $fontcolor, $coords->name);
+	$height = map_text($image_map, $kontakt->navn, 30, $fontcolor, $imconf->font, $coords->name);
 	$coords->fylke->y += $height;
-	map_text($image_map, $kontakt->fylke->navn, 25, $fontcolor, $coords->fylke);
+	map_text($image_map, $kontakt->fylke->navn, 25, $fontcolor, $imconf->font_bold, $coords->fylke);
 	imagedestroy( $image_contact );
 }
 
-function map_text($image, $text, $fontsize, $fontcolor, $coords) {
+function map_text($image, $text, $fontsize, $fontcolor, $font, $coords) {
 	global $imconf;
 	
 	l('Writing '. $text);
@@ -225,7 +225,7 @@ function map_text($image, $text, $fontsize, $fontcolor, $coords) {
 				 $coords->x - $text_centerpoint, // Destination X
 				 $coords->y + $text_heigth, // Destination Y
 				 $fontcolor, // Color
-				 $imconf->font_bold, // Font path
+				 $font, // Font path
 				 $text // TEXT
 				 );
 	return $text_heigth;
@@ -242,16 +242,16 @@ function map_coordinates($fylke, $width, $height) {
 	$coords->nordtrondelag 	= (object) array('x' => 1590,	'y' => 1280);
 	$coords->sortrondelag	= (object) array('x' => 795,	'y' => 1070);
 	$coords->moreogromsdal 	= (object) array('x' => 460,	'y' => 1250);
-	$coords->sognogfjordane = (object) array('x' => 270,	'y' => 1590);
-	$coords->hordaland 		= (object) array('x' => 270,	'y' => 1935);
-	$coords->rogaland 		= (object) array('x' => 270,	'y' => 2275);
-	$coords->vestagder 		= (object) array('x' => 470,	'y' => 2560);
-	$coords->austagder		= (object) array('x' => 730,	'y' => 2560);
-	$coords->telemark 		= (object) array('x' => 990,	'y' => 2560);
-	$coords->vestfold 		= (object) array('x' => 1250,	'y' => 2560);
-	$coords->buskerud 		= (object) array('x' => 1510,	'y' => 2560);
-	$coords->oslo 			= (object) array('x' => 1780,	'y' => 2560);
-	$coords->ostfold		= (object) array('x' => 2050,	'y' => 2560);
+	$coords->sognogfjordane = (object) array('x' => 220,	'y' => 1570);
+	$coords->hordaland 		= (object) array('x' => 220,	'y' => 1915);
+	$coords->rogaland 		= (object) array('x' => 220,	'y' => 2250);
+	$coords->vestagder 		= (object) array('x' => 470,	'y' => 2580);
+	$coords->austagder		= (object) array('x' => 730,	'y' => 2580);
+	$coords->telemark 		= (object) array('x' => 990,	'y' => 2580);
+	$coords->vestfold 		= (object) array('x' => 1250,	'y' => 2580);
+	$coords->buskerud 		= (object) array('x' => 1510,	'y' => 2580);
+	$coords->oslo 			= (object) array('x' => 1780,	'y' => 2580);
+	$coords->ostfold		= (object) array('x' => 2050,	'y' => 2580);
 	$coords->akershus		= (object) array('x' => 1550, 	'y' => 2010);
 	$coords->hedmark 		= (object) array('x' => 1880,	'y' => 1880);
 	$coords->oppland 		= (object) array('x' => 1550,	'y' => 1590);
