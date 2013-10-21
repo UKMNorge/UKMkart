@@ -18,6 +18,15 @@ if(is_admin()) {
 	require_once('functions.inc.php');
 	$UKMKART_GD_LOG = array();
 	$UKMKART_GD_LOG_GROUP = '';
+
+	function lg($group) {
+		global $UKMKART_GD_LOG_GROUP;
+		$UKMKART_GD_LOG_GROUP = $group;
+	}
+	function l($message,$level=null) {
+		global $UKMKART_GD_LOG;
+		$UKMKART_GD_LOG[] = array('group'=> $UKMKART_GD_LOG_GROUP, 'level' => $level, 'message' => $message);
+	}
 }
 
 function UKMkart_menu() {
