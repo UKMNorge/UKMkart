@@ -15,6 +15,8 @@
 @$imconf->folder->resources = $imconf->folder->base .'resources/';
 @$imconf->folder->maps 		= $imconf->folder->base .'map/';
 
+@$imconf->url->maps = plugin_dir_url( __FILE__ ) .'map/';
+
 @$imconf->font = $imconf->folder->resources .'verdana.ttf';
 @$imconf->font_bold = $imconf->folder->resources .'verdanab.ttf';
 
