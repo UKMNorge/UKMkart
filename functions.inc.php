@@ -258,8 +258,8 @@ function map_coordinates($fylke, $width, $height) {
 	$coords->moreogromsdal 	= (object) array('x' => 460,	'y' => 1250);
 	$coords->sognogfjordane = (object) array('x' => 220,	'y' => 1570);
 	$coords->hordaland 		= (object) array('x' => 220,	'y' => 1915);
-	$coords->rogaland 		= (object) array('x' => 220,	'y' => 2250);
-	$coords->vestagder 		= (object) array('x' => 470,	'y' => 2560);
+	$coords->rogaland 		= (object) array('x' => 220,	'y' => 2210);
+	$coords->vestagder 		= (object) array('x' => 450,	'y' => 2560);
 	$coords->austagder		= (object) array('x' => 730,	'y' => 2560);
 	$coords->telemark 		= (object) array('x' => 990,	'y' => 2560);
 	$coords->vestfold 		= (object) array('x' => 1250,	'y' => 2560);
