@@ -225,7 +225,7 @@ function map_text($image, $text, $fontsize, $fontcolor, $coords) {
 }
 
 function map_coordinates($fylke) {
-	$fylke = strtolower($fylke);
+	$fylke = str_replace('-','',strtolower($fylke));
 	l('Find coordinates for '. $fylke);
 	
 	$coords = new StdClass;
