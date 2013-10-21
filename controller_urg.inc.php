@@ -58,9 +58,33 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	curl_close($ch);
 	fclose($fp);
 	
-	create_circle( $filename );
+	$kontakt->map_image = create_circle( $filename );
+
 	l('CIRCLE IMAGE CREATED', 'success');
 }
+
+lg('MAP THE MAP');
+	// LOAD MAP TO GD
+	l('MAP IS LOCATED AT: '. $imconf->resource->map);
+	$image_map = imagecreatefrompng($imconf->resource->map);
+	$imconf->size->map->w = imagesx($image_map);
+	$imconf->size->map->h = imagesy($image_map);
+	
+	l('MAP DIMENSIONS: '. $imconf->size->map->w .'x'. $imconf->map->h);
+	// DEFINE COLORS
+	$fontcolor = imagecolorallocate($image_map, 30,74,69);
+	
+	// PER CONTACT
+	foreach($kontakter as $kontakt) {
+		map_contact($kontakt);
+	}	
+	
+	// WRITE IMAGE
+	header('Content-type: image/png');
+	imagepng($image_map);
+	imagedestroy($image_contact);
+	imagedestroy($image_map);
+
 
 global $UKMkart_GD_LOG;
 $infos = array('kontakter' => $kontakter, 'log' => $UKMkart_GD_LOG);

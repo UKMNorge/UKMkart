@@ -159,6 +159,8 @@ function create_circle( $filename_in_original_folder ) {
 	imagepng($image_circle, $file_circle);
 	imagedestroy($image_circle);
 	imagedestroy($mask);
+	
+	return $file_circle;
 }
 
 function map_contact($kontakt) {
@@ -170,11 +172,15 @@ function map_contact($kontakt) {
 	$coords->fylke = (object) array('x' => $coords->name->x,
 									'y' => $coords->name->y + 11);
 
-	$file_contact = $imconf->folder->circle. str_replace('.jpg','.png', $kontakt->bilde);
+	l('Mapping '. $kontakt->fylke->navn .' @ '. $coords->fylke->x .'x'. $coords->fylke->y);
+	$file_contact = $kontakt->map_image;
 	
+	l('Mapping image at: '. $file_contact);
 	$image_contact = imagecreatefrompng($file_contact);
 	$width_contact = imagesx($image_contact);
 	$height_contact= imagesy($image_contact);
+	
+	l('Scaling image from '. $width_contact .'x'. $height_contact .' to '. $imconf->size->contact->inmap->w .'x'. $imconf->size->contact->inmap->y);
 	
 	imagecopyresampled($image_map, // target image
 					   $image_contact, // source image
@@ -193,10 +199,9 @@ function map_contact($kontakt) {
 }
 
 function map_text($image, $text, $fontsize, $fontcolor, $coords) {
-
-
 	global $imconf;
 	
+	l('Writing '. $text);
 	$textbox = imagettfbbox($fontsize, // Font size
 							0, // Angle
 							$imconf->font, // Font file
@@ -205,6 +210,8 @@ function map_text($image, $text, $fontsize, $fontcolor, $coords) {
 	$text_width = $textbox[2];
 	$text_centerpoint = $text_width / 2;	
 
+	l('Text width is '. $text_width);
+	l('Text centerpoint is '. $text_centerpoint .' and should center around horizontally @ '. ($coords->x - $text_centerpoint) .'x'.$coords->y);
 	imagettftext($image, // Target image
 				 $fontsize, // Font size
 				 0, // Angle
