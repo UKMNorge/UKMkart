@@ -24,8 +24,8 @@ function lg($group) {
 	global $UKMkart_GD_LOG_GROUP;
 	$UKMkart_GD_LOG_GROUP = $group;
 }
-function l($message,$level=null) {
-	global $UKMkart_GD_LOG;
+function l($message,$level='neutral') {
+	global $UKMkart_GD_LOG, $UKMkart_GD_LOG_GROUP;
 	$UKMkart_GD_LOG[] = array('group'=> $UKMkart_GD_LOG_GROUP, 'level' => $level, 'message' => $message);
 }
 

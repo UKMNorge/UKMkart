@@ -61,5 +61,3 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 
 global $UKMkart_GD_LOG;
 $infos = array('kontakter' => $kontakter, 'log' => $UKMkart_GD_LOG);
-
-var_dump($UKMKART_GD_LOG);
