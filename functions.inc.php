@@ -209,7 +209,11 @@ function map_text($image, $text, $fontsize, $fontcolor, $coords) {
 							$text // Text
 							);
 	$text_width = $textbox[2];
-	$text_heigth = $textbox[1];
+	// SEE http://stackoverflow.com/questions/6737419/php-imagettftext-baseline-workaround
+	$ascent = abs($textbox[7]);
+	$descent = abs($textbox[1]);
+	$text_heigth = $ascent + $descent;
+
 	$text_centerpoint = $text_width / 2;	
 
 	l('Textbox size is '. $text_width .'x'. $text_heigth);
