@@ -16,6 +16,7 @@ $sql = new SQL("SELECT `con`.`id`,
 $res = $sql->run();
 
 $kontakter = array();
+$LOG = array();
 
 while( $r = mysql_fetch_assoc( $res ) ) {
 	
@@ -41,9 +42,15 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	
 	$extension = substr($kontakt->bilde, strrpos( $kontakt->bilde, '.')+1);
 	$filename = $kontakt->bilde_navn .'.'. $extension;
+	$filewrite = $imconf->folder->original . $filename;
 	
+	lg($kontakt->navn);
+	l('Fylke: '. $kontakt->fylke->navn .' ('. $kontakt->fylke->id .')');
+	l('Read image URL: '. $kontakt->bilde);
+	l('Store image to: '. $filewrite);
+
 	$ch = curl_init($kontakt->bilde);
-	$fp = fopen($imconf->folder->original . $filename , 'wb');
+	$fp = fopen($filewrite , 'wb');
 	curl_setopt($ch, CURLOPT_FILE, $fp);
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_exec($ch);
@@ -53,4 +60,12 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 //	create_circle( $filename );
 }
 
-$infos = array('kontakter' => $kontakter);
+$infos = array('kontakter' => $kontakter, 'log' => $LOG);
+
+function lg($group) {
+	global $LOG_GROUP = $group;
+}
+function l($message,$level=null) {
+	global $LOG;
+	$LOG[] = array('group'=> $LOG_GROUP, 'level' => $level, 'message' => $message);
+}
