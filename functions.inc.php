@@ -149,7 +149,7 @@ function create_circle( $filename_in_original_folder ) {
 					   $transparent // The fill color ( A color identifier created with imagecolorallocate().)
 					   );
 					   
-	$red = imagecolorallocate($mask, 0,0,0);
+//	$red = imagecolorallocatealpha($mask, 0,0,0, 127);
 	imagecopymerge($image_circle, // Destination image
 				  $mask, // Source image
 				  0, // Destination X coord
@@ -161,8 +161,8 @@ function create_circle( $filename_in_original_folder ) {
 				  100 // Some merge param..
 				  ); 
 				  
-	imagecolortransparent($image_circle, $red);
-	imagefill($image_circle, 0,0, $red);
+//	imagecolortransparent($image_circle, $red);
+	imagefill($image_circle, 0,0, $transparent);
 
 	imagealphablending($image_circle, false); 
 	imagesavealpha($image_circle, true);
