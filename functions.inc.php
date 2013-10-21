@@ -128,7 +128,7 @@ function create_circle( $filename_in_original_folder ) {
 	// Create mask				   
 	$mask = imagecreatetruecolor($imconf->size->contact->large->w, $imconf->size->contact->large->h);
 	// Create transparent color
-	$transparent = imagecolorallocatealpha($mask, 0, 0, 0, 127);
+	$transparent = imagecolorallocate($mask, 255, 0, 0);
 	$bordercolor = imagecolorallocate($mask, 30,74,69);
 	// Mask the mask ?
 	imagecolortransparent($mask, $transparent);
@@ -149,7 +149,7 @@ function create_circle( $filename_in_original_folder ) {
 					   $transparent // The fill color ( A color identifier created with imagecolorallocate().)
 					   );
 					   
-//	$red = imagecolorallocatealpha($mask, 0,0,0, 127);
+	$red = imagecolorallocate($mask, 0,0,0);
 	imagecopymerge($image_circle, // Destination image
 				  $mask, // Source image
 				  0, // Destination X coord
@@ -161,12 +161,8 @@ function create_circle( $filename_in_original_folder ) {
 				  100 // Some merge param..
 				  ); 
 				  
-//	imagecolortransparent($image_circle, $red);
-	imagefill($image_circle, 0,0, $transparent);
-
-	imagealphablending($image_circle, false); 
-	imagesavealpha($image_circle, true);
-
+	imagecolortransparent($image_circle, $red);
+	imagefill($image_circle, 0,0, $red);
 
 	l('Store circle image at: '. $file_circle);	
 	imagepng($image_circle, $file_circle);
