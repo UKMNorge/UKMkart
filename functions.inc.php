@@ -6,7 +6,8 @@ function scale_and_crop( $filename_in_original_folder ) {
 	$fileext  = substr($filename_in_original_folder, strrpos( $filename_in_original_folder, '.')+1);
 	
 	$file_original = $imconf->folder->original . $filename;
-	$file_crop   = $imconf->folder->square . str_replace('.'.$fileext, '.png', $filename);
+	$file_crop   = $imconf->folder->cropped . str_replace('.'.$fileext, '.png', $filename);
+	$file_crop   = $imconf->folder->scaled . str_replace('.'.$fileext, '.png', $filename);
 
 	l('Read original at: ' . $file_original);
 	l('Original is: '. $fileext);	
@@ -67,17 +68,20 @@ function scale_and_crop( $filename_in_original_folder ) {
 	$image_crop = imagecreatetruecolor($imconf->size->contact->large->w, $imconf->size->contact->large->h);
 	imagecopyresampled($image_crop, // target image
 					   $image_scale, // source image
-					   $offsetX, // Destination X coord
-					   $offsetY, // Destination Y coord
-					   0, // Source X coord
-					   0, // Source Y coord
+					   0, // Destination X coord
+					   0, // Destination Y coord
+					   $offsetX, // Source X coord
+					   $offsetY, // Source Y coord
 					   $imconf->size->contact->large->w, // Destination width
 					   $imconf->size->contact->large->h, // Destination height
 					   $width_scaled,   // Source width
 					   $height_scaled   // Source height
 					   );
 					   
-	l('Store scaled and cropped image at: '. $file_crop);
+	l('Store scaled image at: '. $file_crop);
+	imagepng($image_scale, $file_scale);
+	
+	l('Store cropped image at: '. $file_crop);
 
 	imagedestroy($image_scale);
 	imagepng($image_crop, $file_crop);
