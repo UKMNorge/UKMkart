@@ -15,7 +15,10 @@
 @$imconf->folder->resources = $imconf->folder->base .'resources/';
 @$imconf->folder->maps 		= $imconf->folder->base .'map/';
 
-@$imconf->url->maps = plugin_dir_url( __FILE__ ) .'map/';
+@$imconf->url->base 		= plugin_dir_url( __FILE__ ); 
+@$imconf->url->maps 		= $imconf->url->base . str_replace($imconf->folder->base, '', $imconf->folder->map);
+@$imconf->url->temp			= $imconf->url->base . str_replace($imconf->folder->base, '', $imconf->folder->temp);
+@$imconf->url->circle 		= $imconf->url->temp . str_replace($imconf->folder->base, '', $imconf->folder->circle);
 
 @$imconf->font = $imconf->folder->resources .'verdana.ttf';
 @$imconf->font_bold = $imconf->folder->resources .'verdanab.ttf';
