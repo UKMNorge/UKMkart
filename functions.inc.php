@@ -7,7 +7,7 @@ function scale_and_crop( $filename_in_original_folder ) {
 	
 	$file_original = $imconf->folder->original . $filename;
 	$file_crop   = $imconf->folder->cropped . str_replace('.'.$fileext, '.png', $filename);
-	$file_crop   = $imconf->folder->scaled . str_replace('.'.$fileext, '.png', $filename);
+	$file_scale   = $imconf->folder->scaled . str_replace('.'.$fileext, '.png', $filename);
 
 	l('Read original at: ' . $file_original);
 	l('Original is: '. $fileext);	
