@@ -1,5 +1,6 @@
 <?php
 function scale_and_crop( $filename_in_original_folder ) {
+	l('SCALE AND CROP');
 	global $imconf;
 
 	$filename = basename( $filename_in_original_folder );
@@ -96,13 +97,12 @@ function create_circle( $filename_in_original_folder ) {
 	
 	// SCALE AND CROP SQUARE FIRST
 	$file_scaled = scale_and_crop( $filename_in_original_folder );
-	return ;
 	$filename = basename( $file_scale );
 	
 	$file_circle	= $imconf->folder->circle . $filename;
 
-	l('Read original from: ' . $file_scaled);
-	
+	l('CREATE CIRCLE');
+	l('Read scaled image from: ' . $file_scaled);
 	$image_scaled = imagecreatefrompng($file_scaled);
 	$width_scaled = imagesx($image_scaled);
 	$height_scaled = imagesy($image_scaled);
