@@ -1,6 +1,6 @@
 <h2>UKM-kart</h2>
 <div class="UKM_tabs">
-	<a href="?page=UKMkart&action=info" {{ active == 'info' ? 'class="active"' : ''}}>
+	<a href="?page=UKMkart&action=info" {{ active_tab == 'info' ? 'class="active"' : ''}}>
 		<div>
 			<span class="tab_header">Info</span>
 			<img src="http://ico.ukm.no/info-button-256.png" width="25"  border="0" /><br />
@@ -8,14 +8,14 @@
 		</div>
 	</a>
 
-	<a href="?page=UKMkart&action=urg" {{ active == 'urg' ? 'class="active"' : ''}}>
+	<a href="?page=UKMkart&action=urg" {{ active_tab == 'urg' ? 'class="active"' : ''}}>
 		<div>
 			<span class="tab_header">URG</span>
 			<img src="http://ico.ukm.no/map-32.png" width="25" border="0" /><br />
 			<span class="tab_description">Debug URG-kartet</span>
 		</div>
 	</a>
-	<a href="?page=UKMkart&action=ukm" {{ active == 'list' ? 'class="active"' : ''}}>
+	<a href="?page=UKMkart&action=ukm" {{ active_tab == 'ukm' ? 'class="active"' : ''}}>
 		<div>
 			<span class="tab_header">Fylkeskontakter</span>
 			<img src="http://ico.ukm.no/map-32.png" width="25" border="0" /><br />
