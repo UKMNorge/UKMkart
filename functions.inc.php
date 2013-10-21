@@ -142,10 +142,10 @@ function create_circle( $filename_in_original_folder ) {
 					   );
 	
 	imagefilledellipse($mask, // Image resource (mask)
-					   ($imconf->size->contact->large->w/2)+2, // x-coordinate of the center
-					   ($imconf->size->contact->large->h/2)+2, // y-coordinate of the center
-					   $imconf->size->contact->large->w -8, // The ellipse width
-					   $imconf->size->contact->large->h -8, // The ellipse height
+					   $imconf->size->contact->large->w/2, // x-coordinate of the center
+					   $imconf->size->contact->large->h/2, // y-coordinate of the center
+					   $imconf->size->contact->large->w -10, // The ellipse width
+					   $imconf->size->contact->large->h -10, // The ellipse height
 					   $transparent // The fill color ( A color identifier created with imagecolorallocate().)
 					   );
 					   
