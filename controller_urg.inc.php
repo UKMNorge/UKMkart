@@ -43,8 +43,8 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	$filename = $kontakt->bilde_navn .'.'. $extension;
 	$filewrite = $imconf->folder->original . $filename;
 	
-	lg($kontakt->navn);
-	l('Fylke: '. $kontakt->fylke->navn .' ('. $kontakt->fylke->id .')');
+	lg('FYLKE: '. $kontakt->fylke->navn);
+	l($kontakt->navn .' (fylkeID: '. $kontakt->fylke->id .')');
 	l('Read image URL: '. $kontakt->bilde);
 	l('Store image to: '. $filewrite);
 

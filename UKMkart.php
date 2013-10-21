@@ -10,7 +10,7 @@ Author URI: http://www.ukm-norge.no
 
 ## HOOK MENU AND SCRIPTS
 if(is_admin()) {
-	global $blog_id;
+	global $blog_id, $UKMkart_GD_LOG_GROUP, $UKMkart_GD_LOG;
 	if($blog_id == 1)
 		add_action('admin_menu', 'UKMkart_menu',200);
 
