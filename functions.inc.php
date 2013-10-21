@@ -176,7 +176,7 @@ function create_circle( $filename_in_original_folder ) {
 	return $file_circle;
 }
 
-function map_contact($image_map, $kontakt, $fontcolorx') {
+function map_contact($image_map, $kontakt, $fontcolor) {
 	global $imconf;
 	
 	$coords = map_coordinates($kontakt->fylke->koord_navn, $imconf->size->contact->inmap->w, $imconf->size->contact->inmap->h);
