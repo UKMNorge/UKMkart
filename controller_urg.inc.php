@@ -20,7 +20,7 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	
 	// CREATE A CONTACT OBJECT FOR MAP
 	$object = new kontakt( $r['id'] );
-	$place = new monstring( $r['pl_id'] )
+	$place = new monstring( $r['pl_id'] );
 	$kontakt = new StdClass;
 	$kontakt->fylke = new StdClass;
 	
