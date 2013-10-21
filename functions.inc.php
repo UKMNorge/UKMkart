@@ -14,9 +14,13 @@ function scale_and_crop( $filename_in_original_folder ) {
 		case 'jpg':
 		case 'jpeg':
 			$image_original = imagecreatefromjpeg($file_original);
+			if(!$image_original)
+				$image_original = imagecreatefrompng($file_original);
 			break;
 		case 'png':
 			$image_original = imagecreatefrompng($file_original);
+			if(!$image_original)
+				$image_original = imagecreatefromjpeg($file_original);
 			break;
 	}
 	
