@@ -59,6 +59,7 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	fclose($fp);
 	
 	create_circle( $filename );
+	l('CIRCLE IMAGE CREATED', 'success');
 }
 
 global $UKMkart_GD_LOG;

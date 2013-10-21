@@ -107,7 +107,7 @@ function create_circle( $filename_in_original_folder ) {
 	$width_scaled = imagesx($image_scaled);
 	$height_scaled = imagesy($image_scaled);
 	
-	l('Create circle image: '. $imconf->size->contact->large->w .'x'. $imconf->size->contact->h);
+	l('Create circle image: '. $imconf->size->contact->large->w .'x'. $imconf->size->contact->large->h);
 	$image_circle = imagecreatetruecolor($imconf->size->contact->large->w, $imconf->size->contact->large->h);
 	imagealphablending($image_circle, true);
 	imagecopyresampled($image_circle, // target image
