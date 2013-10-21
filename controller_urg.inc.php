@@ -17,6 +17,7 @@ $res = $sql->run();
 
 $kontakter = array();
 $LOG = array();
+$LOG_GROUP = '';
 
 while( $r = mysql_fetch_assoc( $res ) ) {
 	
@@ -63,7 +64,8 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 $infos = array('kontakter' => $kontakter, 'log' => $LOG);
 
 function lg($group) {
-	global $LOG_GROUP = $group;
+	global $LOG_GROUP;
+	$LOG_GROUP = $group;
 }
 function l($message,$level=null) {
 	global $LOG;
