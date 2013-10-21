@@ -22,9 +22,9 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	$kontakt = new StdClass;
 	$kontakt->fylke = new StdClass;
 	
-	$kontakt->navn = $object->firstname;
+	$kontakt->navn = $object->get('firstname');
 	$kontakt->fylke->id = $r['pl_fylke'];
-	$kontakt->fylke->navn = $r['pl_name'];
+	$kontakt->fylke->navn = utf8_encode($r['pl_name']);
 	$kontakt->bilde = $object->get('image');
 	$kontakt->epost = $object->get('email');
 	$kontakt->mobil = $object->get('tlf');
