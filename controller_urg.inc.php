@@ -70,13 +70,13 @@ lg('MAP THE MAP');
 	$imconf->size->map->w = imagesx($image_map);
 	$imconf->size->map->h = imagesy($image_map);
 	
-	l('MAP DIMENSIONS: '. $imconf->size->map->w .'x'. $imconf->map->h);
+	l('MAP DIMENSIONS: '. $imconf->size->map->w .'x'. $imconf->size->map->h);
 	// DEFINE COLORS
 	$fontcolor = imagecolorallocate($image_map, 30,74,69);
 	
 	// PER CONTACT
 	foreach($kontakter as $kontakt) {
-		map_contact($kontakt);
+		map_contact($image_map, $kontakt);
 	}	
 	
 	// WRITE IMAGE

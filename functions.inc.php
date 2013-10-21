@@ -163,14 +163,14 @@ function create_circle( $filename_in_original_folder ) {
 	return $file_circle;
 }
 
-function map_contact($kontakt) {
-	global $imconf, $image_map;
+function map_contact($image_map, $kontakt) {
+	global $imconf;
 	
 	$coords = map_coordinates($kontakt->fylke->navn);
-	$coords->name = (object) array('x' => $coords->x + ($imconf->size->contact->inmap->w / 2),
-								   'y' => $coords->y + $imconf->size->contact->inmap->h + 10);
-	$coords->fylke = (object) array('x' => $coords->name->x,
-									'y' => $coords->name->y + 11);
+	$coords->name = (object) array('x' => (int) ($coords->x + ($imconf->size->contact->inmap->w / 2)),
+								   'y' => (int) ($coords->y + $imconf->size->contact->inmap->h + 10));
+	$coords->fylke = (object) array('x' => (int) $coords->name->x,
+									'y' => (int) $coords->name->y + 11);
 
 	l('Mapping '. $kontakt->fylke->navn .' @ '. $coords->fylke->x .'x'. $coords->fylke->y);
 	$file_contact = $kontakt->map_image;
