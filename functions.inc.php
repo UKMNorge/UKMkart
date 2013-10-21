@@ -24,19 +24,22 @@ function scale_and_crop( $filename_in_original_folder ) {
 	$height_original = imagesy( $image_original );
 	
 	if($width_original > $height_original) {
+		l('Image is landscape');
 		$ratio = $imconf->size->contact->large->h / $height_original;
 		$width_scaled	= (int) $ratio * $width_original;
 		$height_scaled	= (int) $imconf->size->contact->large->h;
 		$offsetX = (int) ( $width_scaled - $imconf->size->contact->large->w ) / 2;
 		$offsetY = 0;
 	} else {
+		l('Image is portrait');
 		$ratio = $imconf->size->contact->large->w / $width_original;
 		$height_scaled = (int) $ratio * $height_original;
 		$width_scaled = (int) $imconf->size->contact->large->w;
 		$offsetY = (int) ( $height_scaled - $imconf->size->contact->large->h ) / 2;
 		$offsetX = 0;
 	}
-	
+
+	l('Scale ratio: '. $ratio);	
 	l('Scale image from: '. $width_original .'x'. $height_original .' to '. $width_scaled .'x'. $height_scaled);
 	l('Offset original by: '. $offsetX .'x'. $offsetY);
 	
