@@ -43,10 +43,10 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	$filename = $kontakt->bilde_navn .'.'. $extension;
 	$filewrite = $imconf->folder->original . $filename;
 	
-	lg('FYLKE: '. $kontakt->fylke->navn);
-	l($kontakt->navn .' (fylkeID: '. $kontakt->fylke->id .')');
+	lg($kontakt->fylke->navn);
+	l('NAME: ' .$kontakt->navn .' (FylkeID: '. $kontakt->fylke->id .')');
 	l('Read image URL: '. $kontakt->bilde);
-	l('Store image to: '. $filewrite);
+	l('Store image as: '. $filewrite);
 
 	$ch = curl_init($kontakt->bilde);
 	$fp = fopen($filewrite , 'wb');

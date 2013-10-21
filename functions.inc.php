@@ -7,7 +7,9 @@ function scale_and_crop( $filename_in_original_folder ) {
 	
 	$file_original = $imconf->folder->original . $filename;
 	$file_crop   = $imconf->folder->square . str_replace('.'.$fileext, '.png', $filename);
-	
+
+	l('Read original at: ' . $file_original);
+	l('Original is '. $fileext);	
 	switch($fileext) {
 		case 'jpg':
 		case 'jpeg':
@@ -34,6 +36,9 @@ function scale_and_crop( $filename_in_original_folder ) {
 		$offsetY = ( $height_scaled - $imconf->size->contact->large->h ) / 2;
 		$offsetX = 0;
 	}
+	
+	l('Scale image from: '. $width_original .'x'. $height_original .' to '. $width_scaled .'x'. $height_scaled);
+	l('Offset original by: '. $offsetX .'x'. $offsetY);
 	
 	$image_scale = imagecreatetruecolor($width_scaled, $height_scaled);
 	imagecopyresampled($image_scale, // target image
@@ -62,6 +67,8 @@ function scale_and_crop( $filename_in_original_folder ) {
 					   $height_scaled   // Source height
 					   );
 					   
+	l('Store scaled image at: '. $file_square);
+
 	imagedestroy($image_scale);
 	imagepng($image_crop, $file_crop);
 	imagedestroy($image_crop);
@@ -78,12 +85,14 @@ function create_circle( $filename_in_original_folder ) {
 	$filename = basename( $file_scale );
 	
 	$file_circle	= $imconf->folder->circle . $filename;
+
+	l('Read original from: ' . $file_scaled);
 	
 	$image_scaled = imagecreatefrompng($file_scaled);
 	$width_scaled = imagesx($image_scaled);
 	$height_scaled = imagesy($image_scaled);
 	
-	
+	l('Create circle image: '. $imconf->size->contact->large->w .'x'. $imconf->size->contact->h);
 	$image_circle = imagecreatetruecolor($imconf->size->contact->large->w, $imconf->size->contact->large->h);
 	imagealphablending($image_circle, true);
 	imagecopyresampled($image_circle, // target image
@@ -127,8 +136,8 @@ function create_circle( $filename_in_original_folder ) {
 				  
 	imagecolortransparent($image_circle, $red);
 	imagefill($image_circle, 0,0, $red);
-	
-	
+
+	l('Store circle image at: '. $file_circle);	
 	imagepng($image_circle, $file_circle);
 	imagedestroy($image_circle);
 	imagedestroy($mask);
