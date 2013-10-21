@@ -9,18 +9,22 @@ function scale_and_crop( $filename_in_original_folder ) {
 	$file_crop   = $imconf->folder->square . str_replace('.'.$fileext, '.png', $filename);
 
 	l('Read original at: ' . $file_original);
-	l('Original is '. $fileext);	
+	l('Original is: '. $fileext);	
 	switch($fileext) {
 		case 'jpg':
 		case 'jpeg':
-			$image_original = imagecreatefromjpeg($file_original);
-			if(!$image_original)
+			$image_original = @imagecreatefromjpeg($file_original);
+			if(!$image_original) {
+				l('GD says this is not JPG. Trying PNG', 'error');
 				$image_original = imagecreatefrompng($file_original);
+			}
 			break;
 		case 'png':
-			$image_original = imagecreatefrompng($file_original);
-			if(!$image_original)
+			$image_original = @imagecreatefrompng($file_original);
+			if(!$image_original) {
+				l('GD says this is not PNG. Trying JPG', 'error');
 				$image_original = imagecreatefromjpeg($file_original);
+			}
 			break;
 	}
 	
