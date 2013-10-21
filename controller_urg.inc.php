@@ -9,7 +9,8 @@ $sql = new SQL("SELECT `con`.`id`,
 				LEFT JOIN `smartukm_place` AS `pl` ON (`pl`.`pl_id` = `rel`.`pl_id`)
 				WHERE `system_locked` = 'true'
 				AND `email` LIKE '%@urg.ukm.no%'
-				AND `season` = '#season'",
+				AND `season` = '#season'
+				ORDER BY `pl`.`pl_name` ASC",
 			array('season' => get_option('season')));
 				
 $res = $sql->run();
