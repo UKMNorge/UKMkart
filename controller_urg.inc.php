@@ -50,4 +50,7 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 */
 }
 
+var_dump($kontakter);
+
+var_dump($sql);
 $infos = array('kontakter' => $kontakter);
