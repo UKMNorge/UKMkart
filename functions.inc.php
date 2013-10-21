@@ -74,8 +74,8 @@ function scale_and_crop( $filename_in_original_folder ) {
 					   $offsetY, // Source Y coord
 					   $imconf->size->contact->large->w, // Destination width
 					   $imconf->size->contact->large->h, // Destination height
-					   $width_scaled,   // Source width
-					   $height_scaled   // Source height
+					   $width_scaled-$offsetX,   // Source width
+					   $height_scaled-$offsetY   // Source height
 					   );
 					   
 	l('Store scaled image at: '. $file_scale);
