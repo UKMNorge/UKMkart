@@ -33,7 +33,6 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	$kontakt->mobil = $object->get('tlf');
 	$kontakter[] = $kontakt;
 	
-/*
 	// NEW IMAGE NAME
 	$lastdot = strrpos( $kontakt->bilde, '.');
 	$ext = substr($kontakt->bilde, $lastdot+1);
@@ -47,7 +46,6 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	curl_exec($ch);
 	curl_close($ch);
 	fclose($fp);
-*/
 }
 
 var_dump($kontakter);
