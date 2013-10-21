@@ -168,7 +168,7 @@ function map_contact($image_map, $kontakt) {
 	
 	$coords = map_coordinates($kontakt->fylke->koord_navn, $imconf->size->contact->inmap->w, $imconf->size->contact->inmap->h);
 	$coords->name = (object) array('x' => (int) ($coords->x + ($imconf->size->contact->inmap->w / 2)),
-								   'y' => (int) ($coords->y + $imconf->size->contact->inmap->h + 3));
+								   'y' => (int) ($coords->y + $imconf->size->contact->inmap->h + 5));
 	$coords->fylke = (object) array('x' => (int) $coords->name->x,
 									'y' => (int) $coords->name->y + 3);
 
