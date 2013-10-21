@@ -169,6 +169,7 @@ function create_circle( $filename_in_original_folder ) {
 */
 
 	l('Store circle image at: '. $file_circle);	
+	imagesavealpha( $image_circle, true);
 	imagepng($image_circle, $file_circle);
 	imagedestroy($image_circle);
 	imagedestroy($mask);
