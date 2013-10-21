@@ -225,6 +225,7 @@ function map_text($image, $text, $fontsize, $fontcolor, $coords) {
 
 function map_coordinates($fylke) {
 	$fylke = strtolower($fylke);
+	l('Find coordinates for '. $fylke);
 	
 	$coords = new StdClass;
 	$coords->finnmark 		= (object) array('x' => 590, 'y' => 132);
@@ -247,6 +248,10 @@ function map_coordinates($fylke) {
 	$coords->hedmark 		= (object) array('x' => 390, 'y' => 500);
 	$coords->oppland 		= (object) array('x' => 390, 'y' => 550);
 
-
+	if(isset($coords->$fylke))
+		l('Found coordinates!');
+	else
+		l('Oops! Could not find coordinates for '. $fylke, 'error');
+		
 	return $coords->$fylke;
 }
