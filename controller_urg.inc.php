@@ -43,14 +43,14 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	$filename = $kontakt->bilde_navn .'.'. $extension;
 	
 	$ch = curl_init($kontakt->bilde);
-	$fp = fopen($filename , 'wb');
+	$fp = fopen($imconf->folder->original . $filename , 'wb');
 	curl_setopt($ch, CURLOPT_FILE, $fp);
 	curl_setopt($ch, CURLOPT_HEADER, 0);
 	curl_exec($ch);
 	curl_close($ch);
 	fclose($fp);
 	
-	create_circle( $filename );
+//	create_circle( $filename );
 }
 
 $infos = array('kontakter' => $kontakter);
