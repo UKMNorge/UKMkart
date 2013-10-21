@@ -196,6 +196,7 @@ function map_contact($image_map, $kontakt) {
 					   
 	map_text($image_map, $kontakt->navn, 9, $fontcolor, $coords->name);
 	map_text($image_map, $kontakt->fylke->navn, 9, $fontcolor, $coords->fylke);
+	imagedestroy( $image_contact );
 }
 
 function map_text($image, $text, $fontsize, $fontcolor, $coords) {

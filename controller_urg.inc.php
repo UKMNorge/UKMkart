@@ -82,7 +82,6 @@ lg('MAP THE MAP');
 	
 	// WRITE IMAGE
 	imagepng($image_map, $imconf->folder->maps . $MAPNAME .'.png');
-	imagedestroy($image_contact);
 	imagedestroy($image_map);
 
 
