@@ -3,7 +3,7 @@ require_once('UKM/kontakt.class.php');
 require_once('UKM/monstring.class.php');
 
 $sql = new SQL("SELECT `con`.`id`,
-					   `pl`.`pl_id`,
+					   `pl`.`pl_id`
 				FROM `smartukm_contacts` AS `con`
 				LEFT JOIN `smartukm_rel_pl_ab` AS `rel` ON (`rel`.`ab_id` = `con`.`id`)
 				LEFT JOIN `smartukm_place` AS `pl` ON (`pl`.`pl_id` = `rel`.`pl_id`)
