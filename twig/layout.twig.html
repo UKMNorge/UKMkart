@@ -3,7 +3,7 @@
 	<a href="?page=UKMkart&action=info" {{ active == 'info' ? 'class="active"' : ''}}>
 		<div>
 			<span class="tab_header">Info</span>
-			<img src="http://ico.ukm.no/inf-256.png" width="25"  border="0" /><br />
+			<img src="http://ico.ukm.no/info-button-256.png" width="25"  border="0" /><br />
 			<span class="tab_description">Informasjon om modulen</span>
 		</div>
 	</a>
@@ -11,15 +11,15 @@
 	<a href="?page=UKMkart&action=urg" {{ active == 'urg' ? 'class="active"' : ''}}>
 		<div>
 			<span class="tab_header">URG</span>
-			<img src="http://ico.ukm.no/.png" width="25" border="0" /><br />
-			<span class="tab_description">Vis hvilke personer som utgjør URG-kartet</span>
+			<img src="http://ico.ukm.no/map-32.png" width="25" border="0" /><br />
+			<span class="tab_description">Debug URG-kartet</span>
 		</div>
 	</a>
 	<a href="?page=UKMkart&action=ukm" {{ active == 'list' ? 'class="active"' : ''}}>
 		<div>
-			<span class="tab_header">Fylkeskontakten</span>
+			<span class="tab_header">Fylkeskontakter</span>
 			<img src="http://ico.ukm.no/" width="25" border="0" /><br />
-			<span class="tab_description">Vis hvilke personer som utgjør fylkeskontakt-kartet</span>
+			<span class="tab_description">Debug fylkeskontakt-kartet</span>
 		</div>
 	</a>
 </div>
@@ -30,8 +30,18 @@
 </div>
 <div class="UKM_content_wrapper">
 	{% block content %}
-	<h3>Selv-oppdaterende</h3>
-	Modulen blir etterhvert selvoppdaterende, og info om hvordan den fungerer kommer her
+	<h3>Denne modulen er kun til info</h3>
+	<p class="lead">UKM-kartene er selv-oppdaterende så lenge denne modulen er aktivert</p>
+	
+	<p>Hver gang en kontaktperson blir lagret, hooker UKMkart seg inn, og sjekker om det er en "system_locked" kontaktperson (se database)</p>
+	<p>Ved låste kontaktpersoner (dvs URG + Fylkeskontakt) vil kartet tegnes opp på nytt mens administratoren venter.<br />
+	Det kan derfor ta litt tid (5-30 sekunder) å lagre disse kontaktpersonene.<br />
+	Ved lagring av vanlige kontaktpersoner vil man ikke oppleve dette</p>
+	
+	<h3>Dagens URG-kart</h3>
+	<img src="//ukm.no/{{map_url}}URG.png" width="710" alt="Generert URG-kart" />
+	<h3>Dagens fylkeskontakt-kart</h3>
+	<img src="//ukm.no/{{map_url}}fylkeskontaktene.png" width="710" alt="Generert fylkeskontakt-kart" />
 	
 	{% endblock %}
 </div>

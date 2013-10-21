@@ -33,7 +33,7 @@ function l($message,$level='neutral') {
 
 
 function UKMkart_menu() {
-	$page = add_menu_page('Kart', 'Kart', 'editor', 'UKMkart', 'UKMkart', 'http://ico.ukm.no/hus-menu.png',499);
+	$page = add_menu_page('Kart', 'Kart', 'editor', 'UKMkart', 'UKMkart', 'http://ico.ukm.no/map-menu.png',514);
 	add_action( 'admin_print_styles-' . $page, 'UKMkart_script' );
 }
 
@@ -46,12 +46,13 @@ function UKMkart_script() {
 }
 
 function UKMkart() {
+	global $imconf;
 	if(!isset($_GET['action']))
 		$_GET['action'] = 'info';
 
 	switch($_GET['action']) {
 		case 'info': 
-			echo TWIG('layout.twig.html', array(), dirname(__FILE__) );
+			echo TWIG('layout.twig.html', array('map_url' => $imconf->url->maps) , dirname(__FILE__) );
 			break;
 		case 'urg':
 			require_once('controller_urg.inc.php');
