@@ -1,4 +1,5 @@
 <?php
+require_once('UKM/kontakt.class.php');
 
 $sql = new SQL("SELECT `con`.`id`,
 					   `pl`.`pl_fylke`,
