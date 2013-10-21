@@ -36,7 +36,8 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	// NEW IMAGE NAME
 	$kontakt->bilde = $object->get('image');
 	$kontakt->bilde_navn = $place->g('url');
-	
+	$kontakt->fylke->koord_navn = $kontakt->bilde_navn;
+
 	$kontakter[] = $kontakt;
 
 	// READ EXTERNAL FILE, STORE IN WORKING DIR WITH CORRECT NAME!
