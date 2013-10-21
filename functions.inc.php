@@ -3,7 +3,7 @@ function create_circle($kontakt, $file_input) {
 	global $imconf;
 	
 	//$file_input		= $imconf->folder->base . $kontakt->bilde;
-	$file_circle	= $imconf->folder->circle . str_replace('.jpg','.png', $kontakt->bilde);
+	$file_circle	= $imconf->folder->circle . str_replace('.jpg','.png', basename($file_input));
 	
 	$image_input = imagecreatefromjpeg($file_input);
 	$input_width = imagesx($image_input);
