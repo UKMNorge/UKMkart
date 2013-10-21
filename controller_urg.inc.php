@@ -46,6 +46,10 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	curl_exec($ch);
 	curl_close($ch);
 	fclose($fp);
+	
+	
+	// FIX CONTACT IMAGE
+	create_circle($kontakt, $orig_name);
 }
 
 $infos = array('kontakter' => $kontakter);
