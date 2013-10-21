@@ -6,7 +6,7 @@
 @$imconf->size->map->w = 0;
 @$imconf->size->map->h = 0;
 
-@$imconf->folder->base 		= '/home/ukmno/public_html/wp-content/plugins/UKMKart/';
+@$imconf->folder->base 		= plugin_dir_path( __FILE__ );
 @$imconf->folder->temp		= $imconf->folder->base .'temp/';
 @$imconf->folder->original 	= $imconf->folder->temp . 'original/';
 @$imconf->folder->circle 	= $imconf->folder->temp . 'circle/';
