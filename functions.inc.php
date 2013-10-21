@@ -196,7 +196,7 @@ function map_contact($image_map, $kontakt) {
 					   
 	$height = map_text($image_map, $kontakt->navn, 30, $fontcolor, $imconf->font, $coords->name);
 	$coords->fylke->y += $height;
-	map_text($image_map, $kontakt->fylke->navn, 25, $fontcolor, $imconf->font_bold, $coords->fylke);
+	map_text($image_map, $kontakt->fylke->navn, 30, $fontcolor, $imconf->font_bold, $coords->fylke);
 	imagedestroy( $image_contact );
 }
 
@@ -215,7 +215,7 @@ function map_text($image, $text, $fontsize, $fontcolor, $font, $coords) {
 	$descent = abs($textbox[1]);
 	$text_heigth = $ascent + $descent;
 
-	$text_centerpoint = $text_width / 2;	
+	$text_centerpoint = (int) $text_width / 2;	
 
 	l('Textbox size is '. $text_width .'x'. $text_heigth);
 	l('Text centerpoint is '. $text_centerpoint .' and should center around @ '. ($coords->x - $text_centerpoint) .'x'. ($coords->y + $text_heigth));
