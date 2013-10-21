@@ -59,6 +59,7 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 //	create_circle( $filename );
 }
 
-$infos = array('kontakter' => $kontakter, 'log' => $UKMKART_GD_LOG);
+global $UKMkart_GD_LOG;
+$infos = array('kontakter' => $kontakter, 'log' => $UKMkart_GD_LOG);
 
 var_dump($UKMKART_GD_LOG);

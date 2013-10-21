@@ -16,18 +16,19 @@ if(is_admin()) {
 
 	require_once('config.php');
 	require_once('functions.inc.php');
-	$UKMKART_GD_LOG = array();
-	$UKMKART_GD_LOG_GROUP = '';
-
-	function lg($group) {
-		global $UKMKART_GD_LOG_GROUP;
-		$UKMKART_GD_LOG_GROUP = $group;
-	}
-	function l($message,$level=null) {
-		global $UKMKART_GD_LOG;
-		$UKMKART_GD_LOG[] = array('group'=> $UKMKART_GD_LOG_GROUP, 'level' => $level, 'message' => $message);
-	}
+	$UKMkart_GD_LOG = array();
+	$UKMkart_GD_LOG_GROUP = '';
 }
+
+function lg($group) {
+	global $UKMkart_GD_LOG_GROUP;
+	$UKMkart_GD_LOG_GROUP = $group;
+}
+function l($message,$level=null) {
+	global $UKMkart_GD_LOG;
+	$UKMkart_GD_LOG[] = array('group'=> $UKMkart_GD_LOG_GROUP, 'level' => $level, 'message' => $message);
+}
+
 
 function UKMkart_menu() {
 	$page = add_menu_page('Kart', 'Kart', 'editor', 'UKMkart', 'UKMkart', 'http://ico.ukm.no/hus-menu.png',499);
