@@ -166,7 +166,7 @@ function create_circle( $filename_in_original_folder ) {
 function map_contact($image_map, $kontakt) {
 	global $imconf;
 	
-	$coords = map_coordinates($kontakt->fylke->koord_navn, $imconf->size->contact->inmap->w, $imconf->size->contact->inmap->y);
+	$coords = map_coordinates($kontakt->fylke->koord_navn, $imconf->size->contact->inmap->w, $imconf->size->contact->inmap->h);
 	$coords->name = (object) array('x' => (int) ($coords->x + ($imconf->size->contact->inmap->w / 2)),
 								   'y' => (int) ($coords->y + $imconf->size->contact->inmap->h + 10));
 	$coords->fylke = (object) array('x' => (int) $coords->name->x,
@@ -180,7 +180,7 @@ function map_contact($image_map, $kontakt) {
 	$width_contact = imagesx($image_contact);
 	$height_contact= imagesy($image_contact);
 	
-	l('Scaling image from '. $width_contact .'x'. $height_contact .' to '. $imconf->size->contact->inmap->w .'x'. $imconf->size->contact->inmap->y);
+	l('Scaling image from '. $width_contact .'x'. $height_contact .' to '. $imconf->size->contact->inmap->w .'x'. $imconf->size->contact->inmap->h);
 	
 	imagecopyresampled($image_map, // target image
 					   $image_contact, // source image
