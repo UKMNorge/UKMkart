@@ -1,20 +1,14 @@
 <?php
-function create_square($kontakt, $file_original) {
+function scale_and_crop( $filename_in_original_folder ) {
 	global $imconf;
 
-	$file_square   = $imconf->folder->square . $kontakt->bilde_navn .'.png';
-
-	// COPY IMAGE TO TEMP DIR	
-	$ch = curl_init($kontakt->bilde);
-	$fp = fopen($file_original , 'wb');
-	curl_setopt($ch, CURLOPT_FILE, $fp);
-	curl_setopt($ch, CURLOPT_HEADER, 0);
-	curl_exec($ch);
-	curl_close($ch);
-	fclose($fp);
-
-
-	switch($kontakt->bilde_ext) {
+	$filename = basename( $filename_in_original_folder );
+	$fileext  = substr($filename_in_original_folder, strrpos( $filename_in_original_folder, '.')+1);
+	
+	$file_original = $imconf->folder->original . $filename;
+	$file_crop   = $imconf->folder->square . str_replace('.'.$fileext, '.png', $filename);
+	
+	switch($fileext) {
 		case 'jpg':
 		case 'jpeg':
 			$image_original = imagecreatefromjpeg($file_original);
@@ -55,8 +49,8 @@ function create_square($kontakt, $file_original) {
 					   );
 	
 	
-	$image_square = imagecreatetruecolor($imconf->size->contact->large->w, $imconf->size->contact->large->h);
-	imagecopyresampled($image_square, // target image
+	$image_crop = imagecreatetruecolor($imconf->size->contact->large->w, $imconf->size->contact->large->h);
+	imagecopyresampled($image_crop, // target image
 					   $image_scale, // source image
 					   0, // Destination X coord
 					   0, // Destination Y coord
@@ -69,34 +63,39 @@ function create_square($kontakt, $file_original) {
 					   );
 					   
 	imagedestroy($image_scale);
-	imagepng($image_square, $file_square);
-	imagedestroy($image_square);
+	imagepng($image_crop, $file_crop);
+	imagedestroy($image_crop);
 	
 	return $file_square;
 }
 
-function create_circle($kontakt, $file_input) {
+//function create_circle($kontakt, $file_input) {
+function create_circle( $filename_in_original_folder ) {
 	global $imconf;
 	
-	$file_circle	= $imconf->folder->circle . str_replace('.jpg','.png', $kontakt->bilde);
+	// SCALE AND CROP SQUARE FIRST
+	$file_scaled = scale_and_crop( $filename_in_original_folder );
+	$filename = basename( $file_scale );
 	
-	$image_input = imagecreatefromjpeg($file_input);
-	$input_width = imagesx($image_input);
-	$input_height = imagesy($image_input);
+	$file_circle	= $imconf->folder->circle . $filename;
+	
+	$image_scaled = imagecreatefrompng($file_scaled);
+	$width_scaled = imagesx($image_scaled);
+	$height_scaled = imagesy($image_scaled);
 	
 	
 	$image_circle = imagecreatetruecolor($imconf->size->contact->large->w, $imconf->size->contact->large->h);
 	imagealphablending($image_circle, true);
 	imagecopyresampled($image_circle, // target image
-					   $image_input, // source image
+					   $image_scaled, // source image
 					   0, // Destination X coord
 					   0, // Destination Y coord
 					   0, // Source X coord
 					   0, // Source Y coord
 					   $imconf->size->contact->large->w, // Destination width
 					   $imconf->size->contact->large->h, // Destination height
-					   $input_width,   // Source width
-					   $input_height   // Source height
+					   $width_scaled,   // Source width
+					   $height_scaled   // Source height
 					   );
 					   
 	// Create mask				   

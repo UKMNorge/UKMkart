@@ -34,15 +34,23 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	// NEW IMAGE NAME
 	$kontakt->bilde = $object->get('image');
 	$kontakt->bilde_navn = $place->g('url');
-	$kontakt->bilde_ext = substr($kontakt->bilde, strrpos( $kontakt->bilde, '.')+1);
 	
 	$kontakter[] = $kontakt;
-		
-	// FIX CONTACT IMAGE
-	$file_original = $imconf->folder->original . $kontakt->bilde_navn .'.'. $kontakt->bilde_ext;
 
-	$file_square = create_square($kontakt, $file_original);
-	create_circle($kontakt, $file_square);
+	// READ EXTERNAL FILE, STORE IN WORKING DIR WITH CORRECT NAME!
+	
+	$extension = substr($kontakt->bilde, strrpos( $kontakt->bilde, '.')+1);
+	$filename = $kontakt->bilde_navn .'.'. $extension;
+	
+	$ch = curl_init($kontakt->bilde);
+	$fp = fopen($filename , 'wb');
+	curl_setopt($ch, CURLOPT_FILE, $fp);
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_exec($ch);
+	curl_close($ch);
+	fclose($fp);
+	
+	create_circle( $filename );
 }
 
 $infos = array('kontakter' => $kontakter);
