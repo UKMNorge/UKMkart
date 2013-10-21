@@ -13,6 +13,9 @@ if(is_admin()) {
 	global $blog_id;
 	if($blog_id == 1)
 		add_action('admin_menu', 'UKMkart_menu',200);
+
+	require_once('config.php');
+	require_once('functions.inc.php');
 }
 
 function UKMkart_menu() {
@@ -29,9 +32,6 @@ function UKMkart_script() {
 }
 
 function UKMkart() {
-	require_once('config.php');
-	require_once('functions.inc.php');
-
 	if(!isset($_GET['action']))
 		$_GET['action'] = 'info';
 
