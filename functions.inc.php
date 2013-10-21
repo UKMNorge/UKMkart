@@ -65,7 +65,10 @@ function scale_and_crop( $filename_in_original_folder ) {
 					   $height_original   // Source height
 					   );
 	l('Crop image into: '. $imconf->size->contact->large->w .'x'. $imconf->size->contact->large->h);
-	l('Offset original by: '. $offsetX .'x'. $offsetY);	
+	l('Offset original by: '. $offsetX .'x'. $offsetY);
+	$width_scaled_offset = (int) $width_scaled - ($offsetX*2);
+	$height_scaled_offset= (int) $height_scaled -($offsetY*2);
+	l('At offset, crop dimensions is '. $width_scaled_offset .'x'. $height_scaled_offset);
 	$image_crop = imagecreatetruecolor($imconf->size->contact->large->w, $imconf->size->contact->large->h);
 	imagecopyresampled($image_crop, // target image
 					   $image_scale, // source image
@@ -75,8 +78,8 @@ function scale_and_crop( $filename_in_original_folder ) {
 					   $offsetY, // Source Y coord
 					   $imconf->size->contact->large->w, // Destination width
 					   $imconf->size->contact->large->h, // Destination height
-					   $width_scaled-$offsetX,   // Source width
-					   $height_scaled-$offsetY   // Source height
+					   $width_scaled_offset,   // Source width
+					   $height_scaled_offset   // Source height
 					   );
 					   
 	l('Store scaled image at: '. $file_scale);
