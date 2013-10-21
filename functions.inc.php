@@ -97,7 +97,7 @@ function create_circle( $filename_in_original_folder ) {
 	
 	// SCALE AND CROP SQUARE FIRST
 	$file_scaled = scale_and_crop( $filename_in_original_folder );
-	$filename = basename( $file_scale );
+	$filename = basename( $file_scaled );
 	
 	$file_circle	= $imconf->folder->circle . $filename;
 
