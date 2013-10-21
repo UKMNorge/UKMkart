@@ -151,7 +151,7 @@ function create_circle( $filename_in_original_folder ) {
 					   $transparent // The fill color ( A color identifier created with imagecolorallocate().)
 					   );
 					   
-	$black = imagecolorallocate($mask, 0,0,0);
+	$black = imagecolorallocate($mask, 255,255,255);
 	imagecopymerge($image_circle, // Destination image
 				  $mask, // Source image
 				  0, // Destination X coord
