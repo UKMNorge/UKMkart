@@ -25,15 +25,15 @@ function scale_and_crop( $filename_in_original_folder ) {
 	
 	if($width_original > $height_original) {
 		$ratio = $imconf->size->contact->large->h / $height_original;
-		$width_scaled	= $ratio * $width_original;
-		$height_scaled	= $imconf->size->contact->large->h;
-		$offsetX = ( $width_scaled - $imconf->size->contact->large->w ) / 2;
+		$width_scaled	= (int) $ratio * $width_original;
+		$height_scaled	= (int) $imconf->size->contact->large->h;
+		$offsetX = (int) ( $width_scaled - $imconf->size->contact->large->w ) / 2;
 		$offsetY = 0;
 	} else {
 		$ratio = $imconf->size->contact->large->w / $width_original;
-		$height_scaled = $ratio * $height_original;
-		$width_scaled = $imconf->size->contact->large->w;
-		$offsetY = ( $height_scaled - $imconf->size->contact->large->h ) / 2;
+		$height_scaled = (int) $ratio * $height_original;
+		$width_scaled = (int) $imconf->size->contact->large->w;
+		$offsetY = (int) ( $height_scaled - $imconf->size->contact->large->h ) / 2;
 		$offsetX = 0;
 	}
 	
@@ -67,7 +67,7 @@ function scale_and_crop( $filename_in_original_folder ) {
 					   $height_scaled   // Source height
 					   );
 					   
-	l('Store scaled image at: '. $file_square);
+	l('Store scaled and cropped image at: '. $file_crop);
 
 	imagedestroy($image_scale);
 	imagepng($image_crop, $file_crop);
@@ -82,6 +82,7 @@ function create_circle( $filename_in_original_folder ) {
 	
 	// SCALE AND CROP SQUARE FIRST
 	$file_scaled = scale_and_crop( $filename_in_original_folder );
+	return ;
 	$filename = basename( $file_scale );
 	
 	$file_circle	= $imconf->folder->circle . $filename;
