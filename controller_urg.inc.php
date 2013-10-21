@@ -16,8 +16,6 @@ $sql = new SQL("SELECT `con`.`id`,
 $res = $sql->run();
 
 $kontakter = array();
-$LOG = array();
-$LOG_GROUP = '';
 
 while( $r = mysql_fetch_assoc( $res ) ) {
 	
@@ -61,13 +59,13 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 //	create_circle( $filename );
 }
 
-$infos = array('kontakter' => $kontakter, 'log' => $LOG);
+$infos = array('kontakter' => $kontakter, 'log' => $UKMKART_GD_LOG);
 
 function lg($group) {
-	global $LOG_GROUP;
-	$LOG_GROUP = $group;
+	global $UKMKART_GD_LOG_GROUP;
+	$UKMKART_GD_LOG_GROUP = $group;
 }
 function l($message,$level=null) {
-	global $LOG;
-	$LOG[] = array('group'=> $LOG_GROUP, 'level' => $level, 'message' => $message);
+	global $UKMKART_GD_LOG;
+	$UKMKART_GD_LOG[] = array('group'=> $UKMKART_GD_LOG_GROUP, 'level' => $level, 'message' => $message);
 }

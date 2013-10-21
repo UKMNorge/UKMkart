@@ -16,6 +16,8 @@ if(is_admin()) {
 
 	require_once('config.php');
 	require_once('functions.inc.php');
+	$UKMKART_GD_LOG = array();
+	$UKMKART_GD_LOG_GROUP = '';
 }
 
 function UKMkart_menu() {
