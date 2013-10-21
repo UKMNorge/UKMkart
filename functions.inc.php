@@ -127,20 +127,22 @@ function create_circle( $filename_in_original_folder ) {
 					   
 	// Create mask				   
 	$mask = imagecreatetruecolor($imconf->size->contact->large->w, $imconf->size->contact->large->h);
+
+	// CREATE BORDER
+	$bordercolor = imagecolorallocate($mask, 30,74,69);
+	imagefilledellipse($mask, // Image resource (mask)
+				   $imconf->size->contact->large->w/2, // x-coordinate of the center
+				   $imconf->size->contact->large->h/2, // y-coordinate of the center
+				   $imconf->size->contact->large->w -4, // The ellipse width
+				   $imconf->size->contact->large->h -4, // The ellipse height
+				   $bordercolor // The fill color ( A color identifier created with imagecolorallocate().)
+				   );
+
 	// Create transparent color
 	$transparent = imagecolorallocate($mask, 255, 0, 0);
-	$bordercolor = imagecolorallocate($mask, 30,74,69);
-	// Mask the mask ?
+	// Tell GD $transparent is the transparent color
 	imagecolortransparent($mask, $transparent);
-
-	imagefilledellipse($mask, // Image resource (mask)
-					   $imconf->size->contact->large->w/2, // x-coordinate of the center
-					   $imconf->size->contact->large->h/2, // y-coordinate of the center
-					   $imconf->size->contact->large->w -4, // The ellipse width
-					   $imconf->size->contact->large->h -4, // The ellipse height
-					   $bordercolor // The fill color ( A color identifier created with imagecolorallocate().)
-					   );
-	
+	// Draw transparent circle
 	imagefilledellipse($mask, // Image resource (mask)
 					   $imconf->size->contact->large->w/2, // x-coordinate of the center
 					   $imconf->size->contact->large->h/2, // y-coordinate of the center
@@ -149,7 +151,7 @@ function create_circle( $filename_in_original_folder ) {
 					   $transparent // The fill color ( A color identifier created with imagecolorallocate().)
 					   );
 					   
-	$red = imagecolorallocate($mask, 0,0,0);
+	$black = imagecolorallocate($mask, 0,0,0);
 	imagecopymerge($image_circle, // Destination image
 				  $mask, // Source image
 				  0, // Destination X coord
@@ -161,8 +163,10 @@ function create_circle( $filename_in_original_folder ) {
 				  100 // Some merge param..
 				  ); 
 				  
-	imagecolortransparent($image_circle, $red);
-	imagefill($image_circle, 0,0, $red);
+/*
+	imagecolortransparent($image_circle, $black);
+	imagefill($image_circle, 0,0, $black);
+*/
 
 	l('Store circle image at: '. $file_circle);	
 	imagepng($image_circle, $file_circle);
