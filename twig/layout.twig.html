@@ -40,10 +40,18 @@
 	Det kan derfor ta litt tid (5-30 sekunder) å lagre disse kontaktpersonene.<br />
 	Ved lagring av vanlige kontaktpersoner vil man ikke oppleve dette</p>
 	
-	<h3>Dagens URG-kart</h3>
-	<img src="{{map_url}}URG.png" width="500" alt="Generert URG-kart" />
-	<h3>Dagens fylkeskontakt-kart</h3>
-	<img src="{{map_url}}fylkeskontaktene.png" width="500" alt="Generert fylkeskontakt-kart" />
+	<div class="pull-left well well-mini">
+		<h3>Dagens URG-kart</h3>
+		<a href="{{map_url}}URG.png" target="_blank">
+			<img src="{{map_url}}URG.png" width="355" alt="Generert URG-kart" class="thumbnail" />
+		</a>
+	</div>
+	<div class="pull-left well well-mini">
+		<h3>Dagens fylkeskontakt-kart</h3>
+		<a href="{{map_url}}fylkeskontaktene.png" target="_blank">
+			<img src="{{map_url}}fylkeskontaktene.png" width="355" alt="Generert fylkeskontakt-kart" class="thumbnail" />
+		</a>
+	</div>
 	
 	{% endblock %}
 </div>
