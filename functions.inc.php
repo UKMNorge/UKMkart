@@ -2,9 +2,6 @@
 function create_circle($kontakt, $file_input) {
 	global $imconf;
 	
-	var_dump($imconf);
-	return;
-	
 	//$file_input		= $imconf->folder->base . $kontakt->bilde;
 	$file_circle	= $imconf->folder->circle . str_replace('.jpg','.png', $kontakt->bilde);
 	
