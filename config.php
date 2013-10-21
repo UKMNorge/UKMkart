@@ -16,5 +16,6 @@
 @$imconf->folder->maps 		= $imconf->folder->base .'map/';
 
 @$imconf->font = $imconf->folder->resources .'verdana.ttf';
+@$imconf->font_bold = $imconf->folder->resources .'verdanab.ttf';
 
 @$imconf->resource->map = $imconf->folder->resources . 'norgeskart.png';

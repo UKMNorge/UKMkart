@@ -225,7 +225,7 @@ function map_text($image, $text, $fontsize, $fontcolor, $coords) {
 				 $coords->x - $text_centerpoint, // Destination X
 				 $coords->y + $text_heigth, // Destination Y
 				 $fontcolor, // Color
-				 $imconf->font, // Font path
+				 $imconf->font_bold, // Font path
 				 $text // TEXT
 				 );
 	return $text_heigth;
