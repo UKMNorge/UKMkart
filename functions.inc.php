@@ -341,6 +341,8 @@ function gen_map($MAPNAME, $mailfilter) {
 		fclose($fp);
 		
 		$kontakt->map_image = create_circle($MAPNAME, $filename );
+		$kontakt->map_image_url = str_replace($imconf->folder->circle, $imconf->url->circle, $kontakt->map_image);
+		l('Circle url attached: '. $kontakt->map_image_url);
 	
 		l('CIRCLE IMAGE CREATED', 'success');
 	}

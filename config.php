@@ -16,11 +16,13 @@
 @$imconf->folder->maps 		= $imconf->folder->base .'map/';
 
 @$imconf->url->base 		= plugin_dir_url( __FILE__ ); 
-@$imconf->url->maps 		= $imconf->url->base . str_replace($imconf->folder->base, '', $imconf->folder->map);
-@$imconf->url->temp			= $imconf->url->base . str_replace($imconf->folder->base, '', $imconf->folder->temp);
-@$imconf->url->circle 		= $imconf->url->temp . str_replace($imconf->folder->base, '', $imconf->folder->circle);
+@$imconf->url->maps 		= str_replace($imconf->folder->base, $imconf->url->base, $imconf->folder->map);
+@$imconf->url->temp			= str_replace($imconf->folder->base, $imconf->url->base, $imconf->folder->temp);
+@$imconf->url->circle 		= str_replace($imconf->folder->temp, $imconf->url->temp, $imconf->folder->circle);
 
 @$imconf->font = $imconf->folder->resources .'verdana.ttf';
 @$imconf->font_bold = $imconf->folder->resources .'verdanab.ttf';
 
 @$imconf->resource->map = $imconf->folder->resources . 'norgeskart.png';
+
+var_dump($imconf);
