@@ -1,9 +1,9 @@
 <?php
-function scale_and_crop( $filename_in_original_folder ) {
+function scale_and_crop($prefix, $filename_in_original_folder ) {
 	l('SCALE AND CROP');
 	global $imconf;
 
-	$filename = basename( $filename_in_original_folder );
+	$filename = $prefix.'_'.basename( $filename_in_original_folder );
 	$fileext  = substr($filename_in_original_folder, strrpos( $filename_in_original_folder, '.')+1);
 	
 	$file_original = $imconf->folder->original . $filename;
@@ -95,11 +95,11 @@ function scale_and_crop( $filename_in_original_folder ) {
 }
 
 //function create_circle($kontakt, $file_input) {
-function create_circle( $filename_in_original_folder ) {
+function create_circle($prefix, $filename_in_original_folder ) {
 	global $imconf;
 	
 	// SCALE AND CROP SQUARE FIRST
-	$file_scaled = scale_and_crop( $filename_in_original_folder );
+	$file_scaled = scale_and_crop($prefix, $filename_in_original_folder );
 	$filename = basename( $file_scaled );
 	
 	$file_circle	= $imconf->folder->circle . $filename;

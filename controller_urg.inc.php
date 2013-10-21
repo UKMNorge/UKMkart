@@ -60,7 +60,7 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	curl_close($ch);
 	fclose($fp);
 	
-	$kontakt->map_image = create_circle( $filename );
+	$kontakt->map_image = create_circle($MAPNAME, $filename );
 
 	l('CIRCLE IMAGE CREATED', 'success');
 }
