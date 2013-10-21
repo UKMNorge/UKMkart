@@ -9,6 +9,7 @@
 @$imconf->folder->base 		= plugin_dir_path( __FILE__ );
 @$imconf->folder->temp		= $imconf->folder->base .'temp/';
 @$imconf->folder->original 	= $imconf->folder->temp . 'original/';
+@$imconf->folder->square 	= $imconf->folder->temp . 'square/';
 @$imconf->folder->circle 	= $imconf->folder->temp . 'circle/';
 @$imconf->folder->resources = $imconf->folder->base .'resources/';
 

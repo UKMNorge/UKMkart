@@ -28,28 +28,21 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	$kontakt->navn = $object->get('firstname');
 	$kontakt->fylke->id = $place->get('pl_fylke');
 	$kontakt->fylke->navn = $place->get('pl_name');
-	$kontakt->bilde = $object->get('image');
 	$kontakt->epost = $object->get('email');
 	$kontakt->mobil = $object->get('tlf');
-	$kontakter[] = $kontakt;
 	
 	// NEW IMAGE NAME
-	$lastdot = strrpos( $kontakt->bilde, '.');
-	$ext = substr($kontakt->bilde, $lastdot+1);
-	$orig_name = $imconf->folder->original . $place->g('url') . '.'. $ext;
+	$kontakt->bilde = $object->get('image');
+	$kontakt->bilde_navn = $place->g('url').'.jpg';
+	$kontakt->bilde_ext = substr($kontakt->bilde, strrpos( $kontakt->bilde, '.')+1);
 	
-	// COPY IMAGE TO WORK DIR	
-	$ch = curl_init($kontakt->bilde);
-	$fp = fopen($orig_name , 'wb');
-	curl_setopt($ch, CURLOPT_FILE, $fp);
-	curl_setopt($ch, CURLOPT_HEADER, 0);
-	curl_exec($ch);
-	curl_close($ch);
-	fclose($fp);
-	
-	
+	$kontakter[] = $kontakt;
+		
 	// FIX CONTACT IMAGE
-	create_circle($kontakt, $orig_name);
+	$file_original = $imconf->folder->original . $kontakt->bilde_navn .'.'. $kontakt->bilde_ext;
+
+	$file_square = create_square($kontakt, $file_original);
+	create_circle($kontakt, $file_square);
 }
 
 $infos = array('kontakter' => $kontakter);
