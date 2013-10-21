@@ -166,7 +166,7 @@ function create_circle( $filename_in_original_folder ) {
 function map_contact($image_map, $kontakt) {
 	global $imconf;
 	
-	$coords = map_coordinates($kontakt->fylke->koord_navn);
+	$coords = map_coordinates($kontakt->fylke->koord_navn, $imconf->size->contact->inmap->w, $imconf->size->contact->inmap->y);
 	$coords->name = (object) array('x' => (int) ($coords->x + ($imconf->size->contact->inmap->w / 2)),
 								   'y' => (int) ($coords->y + $imconf->size->contact->inmap->h + 10));
 	$coords->fylke = (object) array('x' => (int) $coords->name->x,
@@ -224,7 +224,7 @@ function map_text($image, $text, $fontsize, $fontcolor, $coords) {
 				 );
 }
 
-function map_coordinates($fylke) {
+function map_coordinates($fylke, $width, $height) {
 	$fylke = str_replace('-','',strtolower($fylke));
 	l('Find coordinates for '. $fylke);
 	
@@ -249,10 +249,14 @@ function map_coordinates($fylke) {
 	$coords->hedmark 		= (object) array('x' => 1880,	'y' => 1880);
 	$coords->oppland 		= (object) array('x' => 1550,	'y' => 1590);
 
-	if(isset($coords->$fylke))
+	if(isset($coords->$fylke)) {
 		l('Found coordinates!');
-	else
+		$coords->$fylke->x = $coords->$fylke->x - (int) ($width/2);
+		$coords->$fylke->y = $coords->$fylke->y - (int) ($height/2);
+	}
+	else {
 		l('Oops! Could not find coordinates for '. $fylke, 'error');
-		
+		$coords->$fylke = (object) array('x'=>0,'y'=>0);
+	}
 	return $coords->$fylke;
 }
