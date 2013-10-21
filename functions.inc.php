@@ -78,7 +78,7 @@ function scale_and_crop( $filename_in_original_folder ) {
 					   $height_scaled   // Source height
 					   );
 					   
-	l('Store scaled image at: '. $file_crop);
+	l('Store scaled image at: '. $file_scale);
 	imagepng($image_scale, $file_scale);
 	
 	l('Store cropped image at: '. $file_crop);
