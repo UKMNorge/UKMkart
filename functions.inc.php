@@ -42,7 +42,7 @@ function create_square($kontakt, $file_original) {
 	}
 	
 	$image_scale = imagecreatetruecolor($width_scaled, $height_scaled);
-	imagecopyresampled($image_square, // target image
+	imagecopyresampled($image_scale, // target image
 					   $image_original, // source image
 					   0, // Destination X coord
 					   0, // Destination Y coord
