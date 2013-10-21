@@ -57,8 +57,8 @@ function UKMkart() {
 			echo TWIG('kartgen.twig.html', $infos, dirname( __FILE__ ));
 			break;
 		case 'ukm':
-			$infos['pagetitle'] = 'Fylkeskontakter';
 			require_once('controller_ukm.inc.php');
+			$infos['pagetitle'] = 'Fylkeskontakt';
 			echo TWIG('kartgen.twig.html', $infos, dirname( __FILE__ ));
 			break;
 	}
