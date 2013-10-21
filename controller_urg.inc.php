@@ -78,7 +78,7 @@ lg('MAP THE MAP');
 	
 	// PER CONTACT
 	foreach($kontakter as $kontakt) {
-		map_contact($image_map, $kontakt);
+		map_contact($image_map, $kontakt, $fontcolor);
 	}	
 	
 	// WRITE IMAGE

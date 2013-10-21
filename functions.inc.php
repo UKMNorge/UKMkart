@@ -128,7 +128,7 @@ function create_circle( $filename_in_original_folder ) {
 	// Create mask				   
 	$mask = imagecreatetruecolor($imconf->size->contact->large->w, $imconf->size->contact->large->h);
 	// Create transparent color
-	$transparent = imagecolorallocate($mask, 255, 0, 0);
+	$transparent = imagecolorallocatealpha($mask, 0, 0, 0, 127);
 	$bordercolor = imagecolorallocate($mask, 30,74,69);
 	// Mask the mask ?
 	imagecolortransparent($mask, $transparent);
@@ -164,6 +164,10 @@ function create_circle( $filename_in_original_folder ) {
 	imagecolortransparent($image_circle, $red);
 	imagefill($image_circle, 0,0, $red);
 
+	imagealphablending($image_circle, false); 
+	imagesavealpha($image_circle, true);
+
+
 	l('Store circle image at: '. $file_circle);	
 	imagepng($image_circle, $file_circle);
 	imagedestroy($image_circle);
@@ -172,7 +176,7 @@ function create_circle( $filename_in_original_folder ) {
 	return $file_circle;
 }
 
-function map_contact($image_map, $kontakt) {
+function map_contact($image_map, $kontakt, $fontcolorx') {
 	global $imconf;
 	
 	$coords = map_coordinates($kontakt->fylke->koord_navn, $imconf->size->contact->inmap->w, $imconf->size->contact->inmap->h);
