@@ -44,7 +44,7 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	
 	$extension = substr($kontakt->bilde, strrpos( $kontakt->bilde, '.')+1);
 	$filename = $kontakt->bilde_navn .'.'. $extension;
-	$filewrite = $imconf->folder->original . $filename;
+	$filewrite = $imconf->folder->original . $MAPNAME.'_'. $filename;
 	
 	lg($kontakt->fylke->navn);
 	l('NAME: ' .$kontakt->navn .' (FylkeID: '. $kontakt->fylke->id .')');
