@@ -15,6 +15,7 @@ $sql = new SQL("SELECT `con`.`id`,
 				
 $res = $sql->run();
 
+global $imconf;
 $kontakter = array();
 
 while( $r = mysql_fetch_assoc( $res ) ) {

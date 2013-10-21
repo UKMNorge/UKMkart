@@ -7,17 +7,17 @@ Author: UKM Norge / M Mandal
 Version: 1.0 
 Author URI: http://www.ukm-norge.no
 */
+require_once('config.php');
+require_once('functions.inc.php');
+$UKMkart_GD_LOG = array();
+$UKMkart_GD_LOG_GROUP = '';
+
 
 ## HOOK MENU AND SCRIPTS
 if(is_admin()) {
 	global $blog_id, $UKMkart_GD_LOG_GROUP, $UKMkart_GD_LOG;
 	if($blog_id == 1)
 		add_action('admin_menu', 'UKMkart_menu',200);
-
-	require_once('config.php');
-	require_once('functions.inc.php');
-	$UKMkart_GD_LOG = array();
-	$UKMkart_GD_LOG_GROUP = '';
 }
 
 function lg($group) {
