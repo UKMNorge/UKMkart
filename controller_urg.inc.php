@@ -29,4 +29,4 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	$kontakter[] = $kontakt;
 }
 
-$infos['kontakter'] => $kontakter;
+$infos = array('kontakter' => $kontakter);
