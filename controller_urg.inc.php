@@ -48,7 +48,4 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	fclose($fp);
 }
 
-var_dump($kontakter);
-
-var_dump($sql);
 $infos = array('kontakter' => $kontakter);
