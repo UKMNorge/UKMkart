@@ -53,11 +53,13 @@ function UKMkart() {
 			break;
 		case 'urg':
 			require_once('controller_urg.inc.php');
-			echo TWIG('urg.twig.html', $infos, dirname( __FILE__ ));
+			$infos['pagetitle'] = 'URG';
+			echo TWIG('kartgen.twig.html', $infos, dirname( __FILE__ ));
 			break;
-		case 'urg':
-			require_once('controller_fylkeskontakter.inc.php');
-			echo TWIG('fylkeskontakter.twig.html', $infos, dirname( __FILE__ ));
+		case 'ukm':
+			$infos['pagetitle'] = 'Fylkeskontakter';
+			require_once('controller_ukm.inc.php');
+			echo TWIG('kartgen.twig.html', $infos, dirname( __FILE__ ));
 			break;
 	}
 }
