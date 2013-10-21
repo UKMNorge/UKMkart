@@ -163,10 +163,8 @@ function create_circle( $filename_in_original_folder ) {
 				  100 // Some merge param..
 				  ); 
 				  
-/*
 	imagecolortransparent($image_circle, $black);
 	imagefill($image_circle, 0,0, $black);
-*/
 
 	l('Store circle image at: '. $file_circle);	
 	imagesavealpha( $image_circle, true);
