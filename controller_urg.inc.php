@@ -26,6 +26,8 @@ while( $r = mysql_fetch_assoc( $res ) ) {
 	$kontakt->fylke->id = $r['pl_fylke'];
 	$kontakt->fylke->navn = $r['pl_name'];
 	$kontakt->bilde = $object->get('image');
+	$kontakt->epost = $object->get('email');
+	$kontakt->mobil = $object->get('tlf');
 	$kontakter[] = $kontakt;
 }
 
