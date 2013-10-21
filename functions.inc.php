@@ -253,7 +253,7 @@ function map_coordinates($fylke, $width, $height) {
 	$coords->finnmark 		= (object) array('x' => 2350,	'y' => 630);
 	$coords->troms 			= (object) array('x' => 2050,	'y' => 740);
 	$coords->nordland 		= (object) array('x' => 1785,	'y' => 940);
-	$coords->nordtrondelag 	= (object) array('x' => 1590,	'y' => 1280);
+	$coords->nordtrondelag 	= (object) array('x' => 1540,	'y' => 1240);
 	$coords->sortrondelag	= (object) array('x' => 795,	'y' => 1070);
 	$coords->moreogromsdal 	= (object) array('x' => 460,	'y' => 1250);
 	$coords->sognogfjordane = (object) array('x' => 220,	'y' => 1570);
