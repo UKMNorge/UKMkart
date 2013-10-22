@@ -297,7 +297,7 @@ function sql_res($mailfilter) {
 	return $sql->run();
 }
 
-function gen_map($mailfilter) {
+function gen_map($MAPNAME, $mailfilter) {
 
 	global $imconf;
 	$kontakter = array();
