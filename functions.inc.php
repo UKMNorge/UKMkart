@@ -294,7 +294,7 @@ function sql_res($mailfilter) {
 				ORDER BY `pl`.`pl_name` ASC",
 			array('season' => get_option('season'), 'mailfilter' => $mailfilter));
 				
-	return = $sql->run();
+	return $sql->run();
 }
 
 function gen_map($mailfilter) {
