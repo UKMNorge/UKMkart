@@ -369,7 +369,24 @@ function gen_map($mailfilter) {
 	
 	// WRITE IMAGE
 	imagepng($image_map, $imconf->folder->maps . $MAPNAME .'.png');
+	
+	// SCALE FOR WEB
+	$image_web = imagecreatetruecolor($imconf->size->web->w, $imconf->size->web->h);
+	imagecopyresampled($image_web, // target image
+					   $image_map, // source image
+					   0, // Destination X coord
+					   0, // Destination Y coord
+					   0, // Source X coord
+					   0, // Source Y coord
+					   $imconf->size->web->w, // Destination width
+					   $imconf->size->web->h, // Destination height
+					   $imconf->size->map->w,   // Source width
+					   $imconf->size->map->h   // Source height
+					   );
 	imagedestroy($image_map);
+
+	imagepng($image_web, $imconf->folder->maps . $MAPNAME .'_'. $imconf->size->web->w .'.png');
+	imagedestroy($image_web);
 	
 	$return = new StdClass;
 	$return->url = $imconf->url->maps . $MAPNAME .'.png';
