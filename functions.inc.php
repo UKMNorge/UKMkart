@@ -282,23 +282,27 @@ function map_coordinates($fylke, $width, $height) {
 	return $coords->$fylke;
 }
 
-function gen_map($MAPNAME, $mailfilter) {
+function sql_res($mailfilter) {
 	$sql = new SQL("SELECT `con`.`id`,
-						   `pl`.`pl_id`
-					FROM `smartukm_contacts` AS `con`
-					LEFT JOIN `smartukm_rel_pl_ab` AS `rel` ON (`rel`.`ab_id` = `con`.`id`)
-					LEFT JOIN `smartukm_place` AS `pl` ON (`pl`.`pl_id` = `rel`.`pl_id`)
-					WHERE `system_locked` = 'true'
-					AND `email` LIKE '%@#mailfilter%'
-					AND `season` = '#season'
-					ORDER BY `pl`.`pl_name` ASC",
-				array('season' => get_option('season'), 'mailfilter' => $mailfilter));
-					
-	$res = $sql->run();
-	
+					   `pl`.`pl_id`
+				FROM `smartukm_contacts` AS `con`
+				LEFT JOIN `smartukm_rel_pl_ab` AS `rel` ON (`rel`.`ab_id` = `con`.`id`)
+				LEFT JOIN `smartukm_place` AS `pl` ON (`pl`.`pl_id` = `rel`.`pl_id`)
+				WHERE `system_locked` = 'true'
+				AND `email` LIKE '%@#mailfilter%'
+				AND `season` = '#season'
+				ORDER BY `pl`.`pl_name` ASC",
+			array('season' => get_option('season'), 'mailfilter' => $mailfilter));
+				
+	return = $sql->run();
+}
+
+function gen_map($mailfilter) {
+
 	global $imconf;
 	$kontakter = array();
-	
+	$res = sql_res($mailfilter);
+		
 	while( $r = mysql_fetch_assoc( $res ) ) {
 		
 		// CREATE A CONTACT OBJECT FOR MAP
