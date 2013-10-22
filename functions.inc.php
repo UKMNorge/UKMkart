@@ -282,21 +282,6 @@ function map_coordinates($fylke, $width, $height) {
 	return $coords->$fylke;
 }
 
-function sql_res($mailfilter) {
-	$sql = new SQL("SELECT `con`.`id`,
-					   `pl`.`pl_id`
-				FROM `smartukm_contacts` AS `con`
-				LEFT JOIN `smartukm_rel_pl_ab` AS `rel` ON (`rel`.`ab_id` = `con`.`id`)
-				LEFT JOIN `smartukm_place` AS `pl` ON (`pl`.`pl_id` = `rel`.`pl_id`)
-				WHERE `system_locked` = 'true'
-				AND `email` LIKE '%@#mailfilter%'
-				AND `season` = '#season'
-				ORDER BY `pl`.`pl_name` ASC",
-			array('season' => get_option('season'), 'mailfilter' => $mailfilter));
-				
-	return $sql->run();
-}
-
 function gen_map($MAPNAME, $mailfilter) {
 
 	global $imconf;
@@ -395,6 +380,21 @@ function gen_map($MAPNAME, $mailfilter) {
 	return $return;
 }
 
+function sql_res($mailfilter) {
+	$sql = new SQL("SELECT `con`.`id`,
+					   `pl`.`pl_id`
+				FROM `smartukm_contacts` AS `con`
+				LEFT JOIN `smartukm_rel_pl_ab` AS `rel` ON (`rel`.`ab_id` = `con`.`id`)
+				LEFT JOIN `smartukm_place` AS `pl` ON (`pl`.`pl_id` = `rel`.`pl_id`)
+				WHERE `system_locked` = 'true'
+				AND `email` LIKE '%@#mailfilter%'
+				AND `season` = '#season'
+				ORDER BY `pl`.`pl_name` ASC",
+			array('season' => get_option('season'), 'mailfilter' => $mailfilter));
+
+	return $sql->run();
+}
+
 function visitor_map($MAPNAME, $mailfilter) {
 	global $imconf;
 	@$imconf->size->target_map->w   = 900;
@@ -425,6 +425,8 @@ function visitor_map($MAPNAME, $mailfilter) {
 		// NEW IMAGE NAME
 		$kontakt->bilde = $object->get('image');
 		$kontakt->bilde_navn = $place->g('url');
+		$kontakt->bilde_sirkel = $imconf->url->circle . $MAPNAME .'_'. $kontakt->bilde_navn . '.png';
+		
 		$kontakt->fylke->koord_navn = $kontakt->bilde_navn;
 		$kontakt->facebook = $object->get('facebook');
 	
@@ -440,9 +442,7 @@ function visitor_map($MAPNAME, $mailfilter) {
 		$bottom_right_y	= (int) ($head_center_y + $imconf->size->target_head->h );
 		
 		$kontakt->coords->trbl = "$top_left_x,$top_left_y,$bottom_right_x,$bottom_right_y";
-		
-	//	var_dump($kontakt->coords);
-		
+				
 		$kontakter[] = $kontakt;
 	}
 	
