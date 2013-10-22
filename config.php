@@ -8,7 +8,7 @@
 @$imconf->size->original->w = 2682;
 @$imconf->size->original->h = 2778;
 @$imconf->size->web->w = 1000;
-@$imconf->size->web->h = (int) ($imconf->size->web->w / $imconf->size->original->w) * $imconf->size->original->h);
+@$imconf->size->web->h = (int) (($imconf->size->web->w / $imconf->size->original->w) * $imconf->size->original->h);
 
 @$imconf->folder->base 		= plugin_dir_path( __FILE__ );
 @$imconf->folder->temp		= $imconf->folder->base .'temp/';
