@@ -449,7 +449,7 @@ function visitor_map($MAPNAME, $mailfilter) {
 	return array('kontakter' => $kontakter,
 				   'kontakt_width' => $imconf->size->contact->inmap->w,
 				   'kontakt_height'=> $imconf->size->contact->inmap->h,
-				   'kart_url' => $imconf->url->maps . $MAPNAME .'.png',
+				   'kart_url' => $imconf->url->maps . $MAPNAME .'_'. $imconf->size->web->w .'.png',
 				   'kart_width' => $imconf->size->target_map->w
 				   );
 }
