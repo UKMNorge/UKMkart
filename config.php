@@ -5,6 +5,8 @@
 @$imconf->size->contact->inmap->h = 225;
 @$imconf->size->map->w = 0;
 @$imconf->size->map->h = 0;
+@$imconf->size->original->w = 2682;
+@$imconf->size->original->h = 2778;
 
 @$imconf->folder->base 		= plugin_dir_path( __FILE__ );
 @$imconf->folder->temp		= $imconf->folder->base .'temp/';
