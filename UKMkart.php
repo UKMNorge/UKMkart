@@ -42,7 +42,7 @@ function UKMkart_script() {
 	wp_enqueue_script('bootstrap_js');
 	wp_enqueue_style('bootstrap_css');
 
-	wp_enqueue_style('UKMkart_css', plugin_dir_url( __FILE__ ).'ukmkart.css');
+	//wp_enqueue_style('UKMkart_css', plugin_dir_url( __FILE__ ).'ukmkart.css');
 }
 
 function UKMkart() {
@@ -89,39 +89,3 @@ function UKMkart_update($contact_id) {
 	}
 
 }
-/*
-
-$kontakt = new StdClass;
-$kontakt->fylke = new StdClass;
-$kontakt->navn = 'Astrid';
-$kontakt->fylke->id = 20;
-$kontakt->fylke->navn = 'Finnmark';
-$kontakt->bilde = 'byasen.jpg';
-$kontakter[] = $kontakt;
-
-
-// GENERER SIRKEL-BILDER AV ALLE KONTAKTER
-	foreach($kontakter as $kontakt) {
-		create_circle($kontakt);
-	}
-
-// GENERER KART MED ALLE SIRKELBILDER
-	// LOAD MAP TO GD
-	$image_map = imagecreatefrompng($imconf->resource->map);
-	$imconf->size->map->w = imagesx($image_map);
-	$imconf->size->map->h = imagesy($image_map);
-	
-	// DEFINE COLORS
-	$fontcolor = imagecolorallocate($image_map, 30,74,69);
-	
-	// PER CONTACT
-	foreach($kontakter as $kontakt) {
-		map_contact($kontakt);
-	}	
-	
-	// WRITE IMAGE
-	header('Content-type: image/png');
-	imagepng($image_map);
-	imagedestroy($image_contact);
-	imagedestroy($image_map);
-*/
