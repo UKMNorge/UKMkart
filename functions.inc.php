@@ -267,8 +267,8 @@ function map_coordinates($fylke, $width, $height) {
 	$coords->oslo 			= (object) array('x' => 1780,	'y' => 2560);
 	$coords->ostfold		= (object) array('x' => 2050,	'y' => 2560);
 	$coords->akershus		= (object) array('x' => 1550, 	'y' => 2010);
-	$coords->hedmark 		= (object) array('x' => 1880,	'y' => 1880);
-	$coords->oppland 		= (object) array('x' => 1550,	'y' => 1590);
+	$coords->oppland 		= (object) array('x' => 1880,	'y' => 1880);
+	$coords->hedmark 		= (object) array('x' => 1550,	'y' => 1590);
 
 	if(isset($coords->$fylke)) {
 		l('Found coordinates!');
