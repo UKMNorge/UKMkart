@@ -17,7 +17,7 @@ $UKMkart_GD_LOG_GROUP = '';
 if(is_admin()) {
 	global $blog_id, $UKMkart_GD_LOG_GROUP, $UKMkart_GD_LOG;
 	if($blog_id == 1)
-		add_action('admin_menu', 'UKMkart_menu',200);
+		add_action('UKM_admin_menu', 'UKMkart_menu');
 		
 	add_action('UKMmonstring_save_contact', 'UKMkart_update');
 }
@@ -33,8 +33,8 @@ function l($message,$level='neutral') {
 
 
 function UKMkart_menu() {
-	$page = add_menu_page('Kart', 'Kart', 'editor', 'UKMkart', 'UKMkart', 'http://ico.ukm.no/map-menu.png',514);
-	add_action( 'admin_print_styles-' . $page, 'UKMkart_script' );
+	UKM_add_menu_page('norge','Kart', 'Kart', 'editor', 'UKMkart', 'UKMkart', 'http://ico.ukm.no/map-menu.png',10);
+	UKM_add_scripts_and_styles('UKMkart', 'UKMkart_script' );
 }
 
 ## INCLUDE SCRIPTS
