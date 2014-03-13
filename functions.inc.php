@@ -397,7 +397,7 @@ function sql_res($mailfilter) {
 
 function visitor_map($MAPNAME, $mailfilter) {
 	global $imconf;
-	@$imconf->size->target_map->w   = 800;
+	@$imconf->size->target_map->w   = 650;
 	
 	$SCALE_RATIO = $imconf->size->target_map->w / $imconf->size->original->w;
 	
