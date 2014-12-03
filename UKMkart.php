@@ -26,7 +26,7 @@ function UKMkart_network_dash_messages( $MESSAGES ) {
 		if( isset( $_GET['debug'] ) ) {
 			var_dump( $image );
 		}
-		if( empty( $image ) ) {
+		if( empty( $image ) || strpos( $image, 'placeholder/person' ) != false ) {
 			$ERROR++;
 		}
 	}
