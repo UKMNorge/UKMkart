@@ -12,7 +12,7 @@ require_once('functions.inc.php');
 $UKMkart_GD_LOG = array();
 $UKMkart_GD_LOG_GROUP = '';
 
-add_filter('UKMWPNETWDASH_messages', 'UKMkart_network_dash_messages');
+add_filter('UKMWPNETWDASH_messages', 'UKMkart_network_dash_messages', 100);
 
 if(get_option('site_type') == 'fylke') {
 	add_filter('UKMWPDASH_messages', 'UKMkart_dash_messages');
