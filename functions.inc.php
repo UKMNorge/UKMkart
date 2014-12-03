@@ -307,9 +307,11 @@ function gen_map($MAPNAME, $mailfilter) {
 		$kontakt->bilde = $object->get('image');
 		$kontakt->bilde_navn = $place->g('url');
 		$kontakt->fylke->koord_navn = $kontakt->bilde_navn;
-
+		
+		update_site_option('UKMkart_'. strtolower($MAPNAME) .'_f'. $kontakt->fylke->id .'_uten_bilde', false);
 		if( strpos( $kontakt->bilde, 'placeholder/person' ) != false ) {
 			$kontakter_uten_bilde[ $MAPNAME ]++;
+			update_site_option('UKMkart_'. strtolower($MAPNAME) .'_f'. $kontakt->fylke->id .'_uten_bilde', true);
 		} else {
 			// // //
 			// FLYTTET FRA UKMAPI
@@ -324,6 +326,7 @@ function gen_map($MAPNAME, $mailfilter) {
 	 			if($response != 200) {
 					$kontakt->bilde = $object->defaultImage();
 					$kontakter_uten_bilde[ $MAPNAME ]++;
+					update_site_option('UKMkart_'. strtolower($MAPNAME) .'_f'. $kontakt->fylke->id .'_uten_bilde', true);
 				}
 			// END OF: FLYTTET FRA UKMAPI
 		}

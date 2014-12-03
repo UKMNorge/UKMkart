@@ -14,6 +14,33 @@ $UKMkart_GD_LOG_GROUP = '';
 
 add_filter('UKMWPNETWDASH_messages', 'UKMkart_network_dash_messages');
 
+if(get_option('site_type') == 'fylke') {
+	add_filter('UKMWPDASH_messages', 'UKMkart_dash_messages');
+}
+
+function UKMkart_dash_messages( $MESSAGES ) {
+	$fylke_id = get_option('fylke');
+	$fylkeskontakt = get_site_option('UKMkart_fylkeskontaktene_f'. $fylke_id .'_uten_bilde');
+
+	if( !$fylkeskontakt ) {
+		$MESSAGES[] = array('level' 	=> 'alert-error',
+							'header' 	=> 'Fylkeskontakten har ikke lastet opp bilde!',
+							'body' 	=> 'Velg "Mønstring" i menyen til venstre for å laste opp bilde'
+							);
+	}
+
+	$URGrepresentant = get_site_option('UKMkart_urg_f'. $fylke_id .'_uten_bilde');
+
+	if( !$URGrepresentant ) {
+		$MESSAGES[] = array('level' 	=> 'alert-error',
+							'header' 	=> 'URG-representanten har ikke lastet opp bilde!',
+							'body' 	=> 'Velg "Mønstring" i menyen til venstre for å laste opp bilde'
+							);
+	}
+
+	return $MESSAGES;
+}
+
 function UKMkart_network_dash_messages( $MESSAGES ) {
 	$ERROR = (int) get_site_option('UKMkart_fylkeskontaktene_uten_bilde');
 	if( $ERROR > 0 ) {
@@ -35,7 +62,6 @@ function UKMkart_network_dash_messages( $MESSAGES ) {
 					);
 	}
 	return $MESSAGES;
-
 }
 
 ## HOOK MENU AND SCRIPTS
