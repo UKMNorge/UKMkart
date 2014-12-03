@@ -15,16 +15,27 @@ $UKMkart_GD_LOG_GROUP = '';
 add_filter('UKMWPNETWDASH_messages', 'UKMkart_network_dash_messages');
 
 function UKMkart_network_dash_messages( $MESSAGES ) {
-	$ERROR = (int) get_site_option('UKMkart_ukm_no_uten_bilde');
+	$ERROR = (int) get_site_option('UKMkart_fylkeskontaktene_uten_bilde');
 	if( $ERROR > 0 ) {
-		$MESSAGES[] = array('level' 	=> 'alert-error',
+		$MESSAGES[] = array('level' 	=> 'alert-warning',
 							'module'	=> 'UKMkart',
 							'header'	=> $ERROR . ' fylkeskontakter har ikke bilde!',
 							'body' 		=> 'Grunnet kontaktkartet på om.ukm.no er dette mer kritisk enn det høres ut til',
-							'link'		=> 'admin.php?page=UKMkart&action=ukm'
+							'link'		=> 'admin.php?page=UKMkart'
+					);
+	}
+
+	$ERROR = (int) get_site_option('UKMkart_urg_uten_bilde');
+	if( $ERROR > 0 ) {
+		$MESSAGES[] = array('level' 	=> 'alert-warning',
+							'module'	=> 'UKMkart',
+							'header'	=> $ERROR . ' URG-representanter har ikke bilde!',
+							'body' 		=> 'Grunnet kontaktkartet på ukm.no/urg er dette mer kritisk enn det høres ut til',
+							'link'		=> 'admin.php?page=UKMkart'
 					);
 	}
 	return $MESSAGES;
+
 }
 
 ## HOOK MENU AND SCRIPTS
