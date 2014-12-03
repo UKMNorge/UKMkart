@@ -15,22 +15,8 @@ $UKMkart_GD_LOG_GROUP = '';
 add_filter('UKMWPNETWDASH_messages', 'UKMkart_network_dash_messages');
 
 function UKMkart_network_dash_messages( $MESSAGES ) {
-	require_once('UKM/kontakt.class.php');
-	$kontakter = array();
-	$res = sql_res('ukm.no');
-	
-	$ERROR = 0;	
-	while( $r = mysql_fetch_assoc( $res ) ) {
-		$object = new kontakt( $r['id'] );
-		$image = $object->get('image');
-		if( isset( $_GET['debug'] ) ) {
-			var_dump( $image );
-		}
-		if( empty( $image ) || strpos( $image, 'placeholder/person' ) != false ) {
-			$ERROR++;
-		}
-	}
-	if( $ERROR ) {
+	$ERROR = (int) get_site_option('UKMkart_ukm_no_uten_bilde');
+	if( $ERROR > 0 ) {
 		$MESSAGES[] = array('level' 	=> 'alert-error',
 							'module'	=> 'UKMkart',
 							'header'	=> $ERROR . ' fylkeskontakter har ikke bilde!',

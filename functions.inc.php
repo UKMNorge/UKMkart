@@ -288,6 +288,7 @@ function gen_map($MAPNAME, $mailfilter) {
 	$kontakter = array();
 	$res = sql_res($mailfilter);
 		
+	$kontakter_uten_bilde[ $MAPNAME ] = 0;
 	while( $r = mysql_fetch_assoc( $res ) ) {
 		
 		// CREATE A CONTACT OBJECT FOR MAP
@@ -307,20 +308,27 @@ function gen_map($MAPNAME, $mailfilter) {
 		$kontakt->bilde_navn = $place->g('url');
 		$kontakt->fylke->koord_navn = $kontakt->bilde_navn;
 
-		// // //
-		// FLYTTET FRA UKMAPI
-		// Som en følge av https://github.com/UKMNorge/UKMapi/commit/aec6eae631f74455a890369ba9fb77ddc3850d8d
-		// // //
-			require_once('UKM/curl.class.php');
- 			// check existence
- 			$test = new UKMCURL();
- 			$test->headersOnly();
- 			$response = $test->request($kontakt->bilde);
- 			
- 			if($response != 200) {
-				$kontakt->bilde = $object->defaultImage();
-			}
-		// END OF: FLYTTET FRA UKMAPI
+		if( strpos( $kontakt->bilde, 'placeholder/person' ) != false ) {
+			$kontakter_uten_bilde[ $MAPNAME ]++;
+		} else {
+			// // //
+			// FLYTTET FRA UKMAPI
+			// Som en følge av https://github.com/UKMNorge/UKMapi/commit/aec6eae631f74455a890369ba9fb77ddc3850d8d
+			// // //
+				require_once('UKM/curl.class.php');
+	 			// check existence
+	 			$test = new UKMCURL();
+	 			$test->headersOnly();
+	 			$response = $test->request($kontakt->bilde);
+	 			
+	 			if($response != 200) {
+					$kontakt->bilde = $object->defaultImage();
+					$kontakter_uten_bilde[ $MAPNAME ]++;
+				}
+			// END OF: FLYTTET FRA UKMAPI
+		}
+		
+		update_site_option('UKMkart_'. strtolower(str_replace('.','_',$MAPNAME)).'_uten_bilde', $kontakter_uten_bilde[ $MAPNAME ]);
 	
 		$kontakter[] = $kontakt;
 	
