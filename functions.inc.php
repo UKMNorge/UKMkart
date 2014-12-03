@@ -328,7 +328,7 @@ function gen_map($MAPNAME, $mailfilter) {
 			// END OF: FLYTTET FRA UKMAPI
 		}
 		
-		update_site_option('UKMkart_'. strtolower(str_replace('.','_',$MAPNAME)).'_uten_bilde', $kontakter_uten_bilde[ $MAPNAME ]);
+		update_site_option('UKMkart_'. strtolower($MAPNAME).'_uten_bilde', $kontakter_uten_bilde[ $MAPNAME ]);
 	
 		$kontakter[] = $kontakt;
 	
