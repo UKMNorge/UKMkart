@@ -306,6 +306,21 @@ function gen_map($MAPNAME, $mailfilter) {
 		$kontakt->bilde = $object->get('image');
 		$kontakt->bilde_navn = $place->g('url');
 		$kontakt->fylke->koord_navn = $kontakt->bilde_navn;
+
+		// // //
+		// FLYTTET FRA UKMAPI
+		// Som en følge av https://github.com/UKMNorge/UKMapi/commit/aec6eae631f74455a890369ba9fb77ddc3850d8d
+		// // //
+			require_once('UKM/curl.class.php');
+ 			// check existence
+ 			$test = new UKMCURL();
+ 			$test->headersOnly();
+ 			$response = $test->request($kontakt->bilde);
+ 			
+ 			if($response != 200) {
+				$kontakt->bilde = $object->defaultImage();
+			}
+		// END OF: FLYTTET FRA UKMAPI
 	
 		$kontakter[] = $kontakt;
 	
