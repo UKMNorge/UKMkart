@@ -15,6 +15,7 @@ $UKMkart_GD_LOG_GROUP = '';
 add_filter('UKMWPNETWDASH_messages', 'UKMkart_network_dash_messages');
 
 function UKMkart_network_dash_messages( $MESSAGES ) {
+	require_once('UKM/kontakt.class.php');
 	$kontakter = array();
 	$res = sql_res('ukm.no');
 	
