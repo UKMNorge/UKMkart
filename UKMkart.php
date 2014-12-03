@@ -12,12 +12,39 @@ require_once('functions.inc.php');
 $UKMkart_GD_LOG = array();
 $UKMkart_GD_LOG_GROUP = '';
 
+add_filter('UKMWPNETWDASH_messages', 'UKMkart_network_dash_messages');
+
+function UKMkart_network_dash_messages( $MESSAGES ) {
+	$kontakter = array();
+	$res = sql_res('ukm.no');
+	
+	$ERROR = 0;	
+	while( $r = mysql_fetch_assoc( $res ) ) {
+		$object = new kontakt( $r['id'] );
+		$image = $object->get('image');
+		if( isset( $_GET['debug'] ) ) {
+			var_dump( $image );
+		}
+		if( empty( $image ) ) {
+			$ERROR++;
+		}
+	}
+	if( $ERROR ) {
+		$MESSAGES[] = array('level' 	=> 'alert-error',
+							'module'	=> 'UKMkart',
+							'header'	=> $ERROR . ' fylkeskontakter har ikke bilde!',
+							'body' 		=> 'Grunnet kontaktkartet på om.ukm.no er dette mer kritisk enn det høres ut til',
+							'link'		=> 'admin.php?page=UKMkart&action=ukm'
+					);
+	}
+	return $MESSAGES;
+}
 
 ## HOOK MENU AND SCRIPTS
 if(is_admin()) {
 	global $blog_id, $UKMkart_GD_LOG_GROUP, $UKMkart_GD_LOG;
 	if($blog_id == 1)
-		add_action('UKM_admin_menu', 'UKMkart_menu');
+		add_action('network_admin_menu', 'UKMkart_menu');
 		
 	add_action('UKMmonstring_save_contact', 'UKMkart_update');
 }
@@ -33,8 +60,8 @@ function l($message,$level='neutral') {
 
 
 function UKMkart_menu() {
-	UKM_add_menu_page('norge','Kart', 'Kart', 'editor', 'UKMkart', 'UKMkart', 'http://ico.ukm.no/map-menu.png',10);
-	UKM_add_scripts_and_styles('UKMkart', 'UKMkart_script' );
+	$page = add_menu_page('Kart', 'Kart', 'editor', 'UKMkart', 'UKMkart', 'http://ico.ukm.no/map-menu.png',130);
+	add_action( 'admin_print_styles-' . $page, 'UKMkart_script' );
 }
 
 ## INCLUDE SCRIPTS
