@@ -22,19 +22,19 @@ function UKMkart_dash_messages( $MESSAGES ) {
 	$fylke_id = get_option('fylke');
 	$fylkeskontakt = get_site_option('UKMkart_fylkeskontaktene_f'. $fylke_id .'_uten_bilde');
 
-	if( !$fylkeskontakt ) {
+	if( $fylkeskontakt ) {
 		$MESSAGES[] = array('level' 	=> 'alert-error',
 							'header' 	=> 'Fylkeskontakten har ikke lastet opp bilde!',
-							'body' 	=> 'Velg "Mønstring" i menyen til venstre for å laste opp bilde'
+							'body' 	=> 'Velg "Min mønstring" i menyen til venstre for å laste opp bilde'
 							);
 	}
 
 	$URGrepresentant = get_site_option('UKMkart_urg_f'. $fylke_id .'_uten_bilde');
 
-	if( !$URGrepresentant ) {
+	if( $URGrepresentant ) {
 		$MESSAGES[] = array('level' 	=> 'alert-error',
 							'header' 	=> 'URG-representanten har ikke lastet opp bilde!',
-							'body' 	=> 'Velg "Mønstring" i menyen til venstre for å laste opp bilde'
+							'body' 	=> 'Velg "Min mønstring" i menyen til venstre for å laste opp bilde'
 							);
 	}
 
