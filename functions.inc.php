@@ -405,7 +405,7 @@ function gen_map($MAPNAME, $mailfilter) {
 	
 	// Trigger cloudflare-rebuild
 	cloudflare_cache_clear($return->url);
-
+	
 	return $return;
 }
 
@@ -434,7 +434,7 @@ function cloudflare_cache_clear($map_url) {
 	$data = array();
 	$data['files'][] = $map_url;
 
-	// Konfiguerer CURL
+	// Konfigurer CURL
 	$curl = new UKMCURL();
 	$curl->port(443);
 	#$curl->
@@ -444,10 +444,14 @@ function cloudflare_cache_clear($map_url) {
 	$curl->json($data);
 	$res = $curl->request($cloudflare_url);
 
-	#var_dump($curl);
-	#var_dump($res);
-	#$curl->json
-	return true;
+	if (isset($res->success) && $res->success) {
+    	return true;
+    }
+    #var_dump($curl);
+    #var_dump($res);
+    #$curl->json
+    echo 'Klarte ikke slette kartet fra Cloudflare. Oppdatering vil ta litt tid.';
+    return false;
 }
 
 function visitor_map($MAPNAME, $mailfilter) {
