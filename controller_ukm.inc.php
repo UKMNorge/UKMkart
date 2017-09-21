@@ -6,3 +6,4 @@ $mapinfo = gen_map('fylkeskontaktene', 'ukm.no');
 
 global $UKMkart_GD_LOG;
 $infos = array('kontakter' => $mapinfo->kontakter, 'log' => $UKMkart_GD_LOG, 'kart' => $mapinfo->url);
+#var_dump($mapinfo->url);

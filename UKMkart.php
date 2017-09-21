@@ -9,6 +9,11 @@ Author URI: http://www.ukm-norge.no
 */
 require_once('config.php');
 require_once('functions.inc.php');
+
+// Test!
+#echo cloudflare_cache_clear('http://ukm.no/blog/2014/06/06/av-med-og-for-ungdom/');
+
+
 $UKMkart_GD_LOG = array();
 $UKMkart_GD_LOG_GROUP = '';
 

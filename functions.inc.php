@@ -403,6 +403,9 @@ function gen_map($MAPNAME, $mailfilter) {
 	$return->url = $imconf->url->maps . $MAPNAME .'.png';
 	$return->kontakter = $kontakter;
 	
+	// Trigger cloudflare-rebuild
+	cloudflare_cache_clear($return->url);
+	
 	return $return;
 }
 
@@ -418,6 +421,36 @@ function sql_res($mailfilter) {
 				ORDER BY `pl`.`pl_name` ASC",
 			array('season' => get_site_option('season'), 'mailfilter' => $mailfilter));
 	return $sql->run();
+}
+
+function cloudflare_cache_clear($map_url) {
+	require_once('UKM/curl.class.php');
+	
+	$cloudflare_url = UKM_CLOUDFLARE_URL . UKM_CLOUDFLARE_UKMNO_ZONE . '/purge_cache';
+	$cloudflare_email = UKM_CLOUDFLARE_EMAIL;
+	$cloudflare_auth_key = UKM_CLOUDFLARE_AUTH_KEY;
+	
+	$data = array();
+	$data['files'][] = $map_url;
+
+	// Konfigurer CURL
+	$curl = new UKMCURL();
+	$curl->port(443);
+	#$curl->
+	$curl->requestType('DELETE');
+	$curl->addHeader('X-Auth-Email: '.$cloudflare_email);
+	$curl->addHeader('X-Auth-Key: '. $cloudflare_auth_key);
+	$curl->json($data);
+	$res = $curl->request($cloudflare_url);
+
+	if (isset($res->success) && $res->success) {
+    	return true;
+    }
+    #var_dump($curl);
+    #var_dump($res);
+    #$curl->json
+    echo 'Klarte ikke slette kartet fra Cloudflare. Oppdatering vil ta litt tid.';
+    return false;
 }
 
 function visitor_map($MAPNAME, $mailfilter) {
