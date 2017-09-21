@@ -292,19 +292,19 @@ function gen_map($MAPNAME, $mailfilter) {
 	while( $r = mysql_fetch_assoc( $res ) ) {
 		
 		// CREATE A CONTACT OBJECT FOR MAP
-		$object = new kontakt( $r['id'] );
+		$object = new kontakt_v2( $r['id'] );
 		$place = new monstring( $r['pl_id'] );
 		$kontakt = new StdClass;
 		$kontakt->fylke = new StdClass;
 		
-		$kontakt->navn = $object->get('firstname');
+		$kontakt->navn = $object->getFornavn();
 		$kontakt->fylke->id = $place->get('pl_fylke');
 		$kontakt->fylke->navn = $place->get('pl_name');
-		$kontakt->epost = $object->get('email');
-		$kontakt->mobil = $object->get('tlf');
+		$kontakt->epost = $object->getEpost();
+		$kontakt->mobil = $object->getTelefon();
 		
 		// NEW IMAGE NAME
-		$kontakt->bilde = $object->get('image');
+		$kontakt->bilde = $object->getBilde();
 		$kontakt->bilde_navn = $place->g('url');
 		$kontakt->fylke->koord_navn = $kontakt->bilde_navn;
 		
@@ -324,7 +324,7 @@ function gen_map($MAPNAME, $mailfilter) {
 	 			$response = $test->request($kontakt->bilde);
 	 			
 	 			if($response != 200) {
-					$kontakt->bilde = $object->defaultImage();
+					$kontakt->bilde = $object->getBilde();
 					$kontakter_uten_bilde[ $MAPNAME ]++;
 					update_site_option('UKMkart_'. strtolower($MAPNAME) .'_f'. $kontakt->fylke->id .'_uten_bilde', true);
 				}
@@ -416,13 +416,17 @@ function sql_res($mailfilter) {
 				AND `email` LIKE '%@#mailfilter%'
 				AND `season` = '#season'
 				ORDER BY `pl`.`pl_name` ASC",
-			array('season' => get_option('season'), 'mailfilter' => $mailfilter));
-
+			array('season' => get_site_option('season'), 'mailfilter' => $mailfilter));
 	return $sql->run();
 }
 
 function visitor_map($MAPNAME, $mailfilter) {
+	require_once('UKM/fylker.class.php');
+
 	global $imconf;
+	
+	$kontaktObjekter = [];
+	$kontakter = [];
 	@$imconf->size->target_map->w   = 650;
 	
 	$SCALE_RATIO = $imconf->size->target_map->w / $imconf->size->original->w;
@@ -432,29 +436,29 @@ function visitor_map($MAPNAME, $mailfilter) {
 	@$imconf->size->target_head->h	= (int) ($SCALE_RATIO * $imconf->size->contact->inmap->h);
 	
 	$res = sql_res($mailfilter);
-	
+		
 	while( $r = mysql_fetch_assoc( $res ) ) {
 		// CREATE A CONTACT OBJECT FOR MAP
-		$object = new kontakt( $r['id'] );
+		$object = new kontakt_v2( $r['id'] );
 		$place = new monstring( $r['pl_id'] );
 		$kontakt = new StdClass;
 		$kontakt->fylke = new StdClass;
 		
-		$kontakt->navn = $object->get('firstname');
-		$kontakt->fornavn = $object->get('firstname');
-		$kontakt->etternavn = $object->get('lastname');
+		$kontakt->navn = $object->getNavn();
+		$kontakt->fornavn = $object->getFornavn();
+		$kontakt->etternavn = $object->getEtternavn();
 		$kontakt->fylke->id = $place->get('pl_fylke');
 		$kontakt->fylke->navn = $place->get('pl_name');
-		$kontakt->epost = $object->get('email');
-		$kontakt->mobil = $object->get('tlf');
-		
+		$kontakt->epost = $object->getEpost();
+		$kontakt->mobil = $object->getTelefon();
+
 		// NEW IMAGE NAME
-		$kontakt->bilde = $object->get('image');
+		$kontakt->bilde = $object->getBilde();
 		$kontakt->bilde_navn = $place->g('url');
 		$kontakt->bilde_sirkel = $imconf->url->circle . $MAPNAME .'_'. $kontakt->bilde_navn . '.png';
 		
 		$kontakt->fylke->koord_navn = $kontakt->bilde_navn;
-		$kontakt->facebook = $object->get('facebook');
+		$kontakt->facebook = $object->getFacebook();
 	
 		$kontakt->coords = map_coordinates($kontakt->fylke->koord_navn, $imconf->size->contact->inmap->w, $imconf->size->contact->inmap->h);
 		
@@ -468,14 +472,21 @@ function visitor_map($MAPNAME, $mailfilter) {
 		$bottom_right_y	= (int) ($head_center_y + $imconf->size->target_head->h );
 		
 		$kontakt->coords->trbl = "$top_left_x,$top_left_y,$bottom_right_x,$bottom_right_y";
-				
+		
+		$fylkenavn = fylker::getById( $kontakt->fylke->id )->getNavn();
+		$object->setTittel( $fylkenavn );
+
 		$kontakter[] = $kontakt;
+		$kontaktObjekter[ $fylkenavn ] = $object;
 	}
 	
-	return array('kontakter' => $kontakter,
-				   'kontakt_width' => $imconf->size->contact->inmap->w,
-				   'kontakt_height'=> $imconf->size->contact->inmap->h,
-				   'kart_url' => $imconf->url->maps . $MAPNAME .'_'. $imconf->size->web->w .'.png',
-				   'kart_width' => $imconf->size->target_map->w
-				   );
+	ksort( $kontaktObjekter );
+	return array(
+					'kontakter' => $kontakter,
+					'kontaktObjekter' => $kontaktObjekter,
+					'kontakt_width' => $imconf->size->contact->inmap->w,
+					'kontakt_height'=> $imconf->size->contact->inmap->h,
+					'kart_url' => $imconf->url->maps . $MAPNAME .'_'. $imconf->size->web->w .'.png',
+					'kart_width' => $imconf->size->target_map->w
+				);
 }
