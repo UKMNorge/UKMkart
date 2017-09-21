@@ -28,3 +28,4 @@
 @$imconf->font_bold = $imconf->folder->resources .'verdanab.ttf';
 
 @$imconf->resource->map = $imconf->folder->resources . 'norgeskart.png';
+@$imconf->resource->person = $imconf->folder->resources . 'person.png';

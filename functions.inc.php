@@ -18,18 +18,20 @@ function scale_and_crop($prefix, $filename_in_original_folder ) {
 			$image_original = @imagecreatefromjpeg($file_original);
 			if(!$image_original) {
 				l('GD says this is not JPG. Trying PNG', 'error');
-				$image_original = imagecreatefrompng($file_original);
+				$image_original = @imagecreatefrompng($file_original);
 			}
 			break;
 		case 'png':
 			$image_original = @imagecreatefrompng($file_original);
 			if(!$image_original) {
 				l('GD says this is not PNG. Trying JPG', 'error');
-				$image_original = imagecreatefromjpeg($file_original);
+				$image_original = @imagecreatefromjpeg($file_original);
 			}
 			break;
 	}
-	
+	if( !$image_original ) {
+		$image_original = imagecreatefrompng($imconf->resource->person);
+	}
 	$width_original  = imagesx( $image_original );
 	$height_original = imagesy( $image_original );
 	
