@@ -89,7 +89,7 @@ function l($message,$level='neutral') {
 
 
 function UKMkart_menu() {
-	$page = add_menu_page('Kart', 'Kart', 'editor', 'UKMkart', 'UKMkart', 'http://ico.ukm.no/map-menu.png',130);
+	$page = add_menu_page('Kart', 'Kart', 'editor', 'UKMkart', 'UKMkart', '//ico.ukm.no/map-menu.png',130);
 	add_action( 'admin_print_styles-' . $page, 'UKMkart_script' );
 }
 
