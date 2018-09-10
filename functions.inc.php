@@ -291,7 +291,7 @@ function gen_map($MAPNAME, $mailfilter) {
 	$res = sql_res($mailfilter);
 		
 	$kontakter_uten_bilde[ $MAPNAME ] = 0;
-	while( $r = mysql_fetch_assoc( $res ) ) {
+	while( $r = SQL::fetch( $res ) ) {
 		
 		// CREATE A CONTACT OBJECT FOR MAP
 		$object = new kontakt_v2( $r['id'] );
@@ -472,7 +472,7 @@ function visitor_map($MAPNAME, $mailfilter) {
 	
 	$res = sql_res($mailfilter);
 		
-	while( $r = mysql_fetch_assoc( $res ) ) {
+	while( $r = SQL::fetch( $res ) ) {
 		// CREATE A CONTACT OBJECT FOR MAP
 		$object = new kontakt_v2( $r['id'] );
 		$place = new monstring( $r['pl_id'] );
