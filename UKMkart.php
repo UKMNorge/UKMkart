@@ -17,12 +17,13 @@ require_once('functions.inc.php');
 $UKMkart_GD_LOG = array();
 $UKMkart_GD_LOG_GROUP = '';
 
+/*
 add_filter('UKMWPNETWDASH_messages', 'UKMkart_network_dash_messages', 100);
 
 if(get_option('site_type') == 'fylke') {
 	add_filter('UKMWPDASH_messages', 'UKMkart_dash_messages');
 }
-
+*/
 function UKMkart_dash_messages( $MESSAGES ) {
 	$fylke_id = get_option('fylke');
 	$fylkeskontakt = get_site_option('UKMkart_fylkeskontaktene_f'. $fylke_id .'_uten_bilde');
